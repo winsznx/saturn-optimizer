@@ -1,0 +1,92 @@
+[project]
+name = "saturn-optimizer"
+description = "Grant-ready Saturn Optimizer MVP"
+authors = ["Timothy Popoola"]
+telemetry = false
+cache_dir = "./.cache"
+requirements = []
+
+[contracts.sip010-ft-trait]
+path = "contracts/interfaces/sip010-ft-trait.clar"
+clarity_version = 4
+epoch = "latest"
+
+[contracts.strategy-trait]
+path = "contracts/interfaces/strategy-trait.clar"
+clarity_version = 4
+epoch = "latest"
+
+[contracts.protocol-adapter-trait]
+path = "contracts/interfaces/protocol-adapter-trait.clar"
+clarity_version = 4
+epoch = "latest"
+
+[contracts.emergency-pause]
+path = "contracts/governance/emergency-pause.clar"
+clarity_version = 4
+epoch = "latest"
+
+[contracts.vault-shares-sbtc]
+path = "contracts/vault/vault-shares-sbtc.clar"
+clarity_version = 4
+epoch = "latest"
+
+[contracts.vault-shares-stx]
+path = "contracts/vault/vault-shares-stx.clar"
+clarity_version = 4
+epoch = "latest"
+
+[contracts.mock-sbtc]
+path = "contracts/mocks/mock-sbtc.clar"
+clarity_version = 4
+epoch = "latest"
+
+[contracts.zest-adapter]
+path = "contracts/adapters/zest-adapter.clar"
+clarity_version = 4
+epoch = "latest"
+
+[contracts.stackingdao-adapter]
+path = "contracts/adapters/stackingdao-adapter.clar"
+clarity_version = 4
+epoch = "latest"
+
+[contracts.bitflow-adapter]
+path = "contracts/adapters/bitflow-adapter.clar"
+clarity_version = 4
+epoch = "latest"
+
+[contracts.lookalike-adapter]
+path = "contracts/mocks/lookalike-adapter.clar"
+clarity_version = 4
+epoch = "latest"
+
+[contracts.conservative-strategy]
+path = "contracts/strategies/conservative-strategy.clar"
+clarity_version = 4
+epoch = "latest"
+
+[contracts.balanced-strategy]
+path = "contracts/strategies/balanced-strategy.clar"
+clarity_version = 4
+epoch = "latest"
+
+[contracts.saturn-vault]
+path = "contracts/vault/saturn-vault.clar"
+clarity_version = 4
+epoch = "latest"
+
+[repl.analysis]
+passes = ["call_checker", "check_checker"]
+
+[repl.analysis.lints]
+
+[repl.analysis.check_checker]
+strict = false
+trusted_sender = true
+trusted_caller = true
+callee_filter = false
+
+[repl.remote_data]
+enabled = false
+api_url = "https://api.hiro.so"

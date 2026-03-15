@@ -1,0 +1,60 @@
+## Example devnet settings only.
+## Use a local ignored `settings/Devnet.toml` for real mnemonics or balances.
+
+[network]
+name = "devnet"
+deployment_fee_rate = 10
+
+[accounts.deployer]
+mnemonic = "<REPLACE_WITH_DEVNET_MNEMONIC>"
+balance = 100_000_000_000_000
+sbtc_balance = 1_000_000_000
+
+[accounts.wallet_1]
+mnemonic = "<REPLACE_WITH_DEVNET_MNEMONIC>"
+balance = 100_000_000_000_000
+sbtc_balance = 1_000_000_000
+
+[accounts.wallet_2]
+mnemonic = "<REPLACE_WITH_DEVNET_MNEMONIC>"
+balance = 100_000_000_000_000
+sbtc_balance = 1_000_000_000
+
+[accounts.wallet_3]
+mnemonic = "<REPLACE_WITH_DEVNET_MNEMONIC>"
+balance = 100_000_000_000_000
+sbtc_balance = 1_000_000_000
+
+[accounts.wallet_4]
+mnemonic = "<REPLACE_WITH_DEVNET_MNEMONIC>"
+balance = 100_000_000_000_000
+sbtc_balance = 1_000_000_000
+
+[accounts.wallet_5]
+mnemonic = "<REPLACE_WITH_DEVNET_MNEMONIC>"
+balance = 100_000_000_000_000
+sbtc_balance = 1_000_000_000
+
+[accounts.wallet_6]
+mnemonic = "<REPLACE_WITH_DEVNET_MNEMONIC>"
+balance = 100_000_000_000_000
+sbtc_balance = 1_000_000_000
+
+[accounts.wallet_7]
+mnemonic = "<REPLACE_WITH_DEVNET_MNEMONIC>"
+balance = 100_000_000_000_000
+sbtc_balance = 1_000_000_000
+
+[accounts.wallet_8]
+mnemonic = "<REPLACE_WITH_DEVNET_MNEMONIC>"
+balance = 100_000_000_000_000
+sbtc_balance = 1_000_000_000
+
+[accounts.faucet]
+mnemonic = "<REPLACE_WITH_DEVNET_MNEMONIC>"
+balance = 100_000_000_000_000
+sbtc_balance = 1_000_000_000
+
+[devnet]
+disable_stacks_explorer = false
+disable_stacks_api = false
