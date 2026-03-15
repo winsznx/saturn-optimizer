@@ -14,10 +14,80 @@ jobs:
           node-version: 22
       - name: Install Clarinet
         run: curl -L https://github.com/hirosystems/clarinet/releases/latest/download/clarinet-linux-x64-glibc.tar.gz | tar -xz && sudo mv clarinet /usr/local/bin/clarinet
+      - name: Materialize CI-safe Clarinet settings
+        run: |
+          cat > settings/Devnet.toml <<'EOF'
+          [network]
+          name = "devnet"
+          deployment_fee_rate = 10
+
+          [accounts.deployer]
+          mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+          balance = 100_000_000_000_000
+          sbtc_balance = 1_000_000_000
+
+          [accounts.wallet_1]
+          mnemonic = "legal winner thank year wave sausage worth useful legal winner thank yellow"
+          balance = 100_000_000_000_000
+          sbtc_balance = 1_000_000_000
+
+          [accounts.wallet_2]
+          mnemonic = "letter advice cage absurd amount doctor acoustic avoid letter advice cage above"
+          balance = 100_000_000_000_000
+          sbtc_balance = 1_000_000_000
+
+          [accounts.wallet_3]
+          mnemonic = "zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo wrong"
+          balance = 100_000_000_000_000
+          sbtc_balance = 1_000_000_000
+
+          [accounts.wallet_4]
+          mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+          balance = 100_000_000_000_000
+          sbtc_balance = 1_000_000_000
+
+          [accounts.wallet_5]
+          mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+          balance = 100_000_000_000_000
+          sbtc_balance = 1_000_000_000
+
+          [accounts.wallet_6]
+          mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+          balance = 100_000_000_000_000
+          sbtc_balance = 1_000_000_000
+
+          [accounts.wallet_7]
+          mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+          balance = 100_000_000_000_000
+          sbtc_balance = 1_000_000_000
+
+          [accounts.wallet_8]
+          mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+          balance = 100_000_000_000_000
+          sbtc_balance = 1_000_000_000
+
+          [accounts.faucet]
+          mnemonic = "legal winner thank year wave sausage worth useful legal winner thank yellow"
+          balance = 100_000_000_000_000
+          sbtc_balance = 1_000_000_000
+
+          [devnet]
+          disable_stacks_explorer = false
+          disable_stacks_api = false
+          EOF
+
+          cat > settings/Testnet.toml <<'EOF'
+          [network]
+          name = "testnet"
+          stacks_node_rpc_address = "https://api.testnet.hiro.so"
+          deployment_fee_rate = 10
+
+          [accounts.deployer]
+          mnemonic = "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+          EOF
       - name: Install dependencies
         run: npm install
       - name: Check contracts
         run: npm run check
       - name: Run tests
         run: npm test
-
