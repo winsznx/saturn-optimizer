@@ -1,0 +1,12 @@
+{
+  "name": "saturn-deposits",
+  "version": 1,
+  "network": "testnet",
+  "note": "MVP placeholder. Update contract IDs before use.",
+  "filter": {
+    "scope": "stacks",
+    "event": "contract_event",
+    "contract_identifier": "ST...saturn-vault"
+  }
+}
+
