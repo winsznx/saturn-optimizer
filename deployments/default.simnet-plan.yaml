@@ -1,0 +1,136 @@
+---
+id: 0
+name: "Simulated deployment, used as a default for `clarinet console`, `clarinet test` and `clarinet check`"
+network: simnet
+genesis:
+  wallets:
+    - name: deployer
+      address: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+      balance: "100000000000000"
+      sbtc-balance: "1000000000"
+    - name: faucet
+      address: STPQRWQMH3FJQWSVK5BKE0K6S00GEAZJH73B77JK
+      balance: "100000000000000"
+      sbtc-balance: "1000000000"
+    - name: wallet_1
+      address: STPQRWQMH3FJQWSVK5BKE0K6S00GEAZJH73B77JK
+      balance: "100000000000000"
+      sbtc-balance: "1000000000"
+    - name: wallet_2
+      address: ST2BXYHE8GG3D713TY21QWNP79232SCMFKGZYNT81
+      balance: "100000000000000"
+      sbtc-balance: "1000000000"
+    - name: wallet_3
+      address: ST1PGN9MZTKZ2TVBSJXJNAY4P7PCMJQMA9TS115N
+      balance: "100000000000000"
+      sbtc-balance: "1000000000"
+    - name: wallet_4
+      address: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+      balance: "100000000000000"
+      sbtc-balance: "1000000000"
+    - name: wallet_5
+      address: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+      balance: "100000000000000"
+      sbtc-balance: "1000000000"
+    - name: wallet_6
+      address: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+      balance: "100000000000000"
+      sbtc-balance: "1000000000"
+    - name: wallet_7
+      address: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+      balance: "100000000000000"
+      sbtc-balance: "1000000000"
+    - name: wallet_8
+      address: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+      balance: "100000000000000"
+      sbtc-balance: "1000000000"
+  contracts:
+    - genesis
+    - lockup
+    - bns
+    - cost-voting
+    - costs
+    - pox
+    - costs-2
+    - pox-2
+    - costs-3
+    - pox-3
+    - pox-4
+    - signers
+    - signers-voting
+    - costs-4
+plan:
+  batches:
+    - id: 0
+      transactions:
+        - emulated-contract-publish:
+            contract-name: protocol-adapter-trait
+            emulated-sender: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+            path: contracts/interfaces/protocol-adapter-trait.clar
+            clarity-version: 4
+        - emulated-contract-publish:
+            contract-name: bitflow-adapter
+            emulated-sender: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+            path: contracts/adapters/bitflow-adapter.clar
+            clarity-version: 4
+        - emulated-contract-publish:
+            contract-name: strategy-trait
+            emulated-sender: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+            path: contracts/interfaces/strategy-trait.clar
+            clarity-version: 4
+        - emulated-contract-publish:
+            contract-name: zest-adapter
+            emulated-sender: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+            path: contracts/adapters/zest-adapter.clar
+            clarity-version: 4
+        - emulated-contract-publish:
+            contract-name: balanced-strategy
+            emulated-sender: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+            path: contracts/strategies/balanced-strategy.clar
+            clarity-version: 4
+        - emulated-contract-publish:
+            contract-name: stackingdao-adapter
+            emulated-sender: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+            path: contracts/adapters/stackingdao-adapter.clar
+            clarity-version: 4
+        - emulated-contract-publish:
+            contract-name: conservative-strategy
+            emulated-sender: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+            path: contracts/strategies/conservative-strategy.clar
+            clarity-version: 4
+        - emulated-contract-publish:
+            contract-name: emergency-pause
+            emulated-sender: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+            path: contracts/governance/emergency-pause.clar
+            clarity-version: 4
+        - emulated-contract-publish:
+            contract-name: lookalike-adapter
+            emulated-sender: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+            path: contracts/mocks/lookalike-adapter.clar
+            clarity-version: 4
+        - emulated-contract-publish:
+            contract-name: sip010-ft-trait
+            emulated-sender: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+            path: contracts/interfaces/sip010-ft-trait.clar
+            clarity-version: 4
+        - emulated-contract-publish:
+            contract-name: mock-sbtc
+            emulated-sender: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+            path: contracts/mocks/mock-sbtc.clar
+            clarity-version: 4
+        - emulated-contract-publish:
+            contract-name: vault-shares-sbtc
+            emulated-sender: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+            path: contracts/vault/vault-shares-sbtc.clar
+            clarity-version: 4
+        - emulated-contract-publish:
+            contract-name: vault-shares-stx
+            emulated-sender: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+            path: contracts/vault/vault-shares-stx.clar
+            clarity-version: 4
+        - emulated-contract-publish:
+            contract-name: saturn-vault
+            emulated-sender: STC5KHM41H6WHAST7MWWDD807YSPRQKJ68T330BQ
+            path: contracts/vault/saturn-vault.clar
+            clarity-version: 4
+      epoch: "3.3"
