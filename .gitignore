@@ -3,13 +3,29 @@
 coverage/
 node_modules/
 dist/
+build/
 tmp/
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
 # OS / editor noise
 .DS_Store
 *.swp
 *.swo
+.vscode/
+.idea/
+
+# Next.js and Vercel artifacts
+.next/
+out/
+.vercel/
+apps/web/.next/
+apps/web/out/
+apps/web/build/
+.eslintcache
 
 # Environment files and local secrets
 .env
@@ -17,7 +33,9 @@ tmp/
 !.env.example
 !.env.sample
 !.env.template
+*.local
 
+# Keystore / Crypto (Saturn Optimizer)
 *.key
 *.pem
 *.p12
