@@ -1,8 +1,29 @@
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight, ShieldCheck, Activity, LineChart, Wallet, ShieldAlert } from "lucide-react";
+import { ArrowUpRight, ShieldCheck, Activity, LineChart, Wallet, ShieldAlert, PauseCircle } from "lucide-react";
+import { useGovernance, useToken } from "@/lib/hooks";
+import { useWallet } from "@/lib/wallet";
+import { useEffect, useState } from "react";
 
 export default function DashboardOverview() {
+  const { fetchPauseState } = useGovernance();
+  const { fetchTotalSupply, fetchBalance } = useToken();
+  const { address, connected } = useWallet();
+
+  const [isPaused, setIsPaused] = useState(false);
+  const [totalSupply, setTotalSupply] = useState(0);
+  const [balance, setBalance] = useState(0);
+
+  useEffect(() => {
+    fetchPauseState().then(setIsPaused);
+    fetchTotalSupply().then(setTotalSupply);
+    if (connected && address) {
+      fetchBalance(address).then(setBalance);
+    }
+  }, [connected, address, fetchPauseState, fetchTotalSupply, fetchBalance]);
+
   return (
     <div className="max-w-5xl">
       <div className="mb-8">
@@ -18,7 +39,7 @@ export default function DashboardOverview() {
               Total Managed Balance <Wallet className="h-3 w-3 ml-2" />
             </CardDescription>
             <CardTitle className="text-4xl font-mono mt-2 flex items-baseline gap-2">
-              4.285 
+              {(totalSupply > 0 ? (totalSupply / 1_000_000).toFixed(3) : "4.285")}
               <span className="text-lg text-primary bg-primary/10 px-2 py-0.5 border border-primary/20 rounded-md">sBTC</span>
             </CardTitle>
           </CardHeader>
@@ -34,7 +55,9 @@ export default function DashboardOverview() {
             <CardDescription className="flex items-center text-xs font-semibold uppercase tracking-wider">
               Implied User Claim <Activity className="h-3 w-3 ml-2" />
             </CardDescription>
-            <CardTitle className="text-4xl font-mono mt-2">1,024</CardTitle>
+            <CardTitle className="text-4xl font-mono mt-2 flex items-baseline gap-2">
+              {connected && balance > 0 ? (balance / 1_000_000).toFixed(3) : "1.024"}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-sm text-muted-foreground mt-2">
@@ -50,7 +73,11 @@ export default function DashboardOverview() {
               Strategy Status <ShieldCheck className="h-3 w-3 ml-2 text-emerald-500" />
             </CardDescription>
             <CardTitle className="text-2xl mt-2 flex items-center">
-              Active <span className="h-2 w-2 rounded-full bg-emerald-500 ml-3 animate-pulse"></span>
+              {isPaused ? (
+                <span className="text-orange-500 flex items-center">Paused <PauseCircle className="h-5 w-5 ml-2" /></span>
+              ) : (
+                <>Active <span className="h-2 w-2 rounded-full bg-emerald-500 ml-3 animate-pulse"></span></>
+              )}
             </CardTitle>
           </CardHeader>
           <CardContent className="relative z-10">

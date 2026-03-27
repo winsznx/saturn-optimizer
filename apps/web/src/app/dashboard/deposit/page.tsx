@@ -4,11 +4,43 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowDownToLine, ArrowUpFromLine, ShieldCheck } from "lucide-react";
+import { ArrowDownToLine, ArrowUpFromLine, ShieldCheck, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useToken } from "@/lib/hooks";
+import { useWallet } from "@/lib/wallet";
+import { useEffect } from "react";
 
 export default function DepositWithdrawPage() {
   const [activeTab, setActiveTab] = useState<"deposit" | "withdraw">("deposit");
+  const [amount, setAmount] = useState("");
+  const [isPending, setIsPending] = useState(false);
+  const [balance, setBalance] = useState(0);
+
+  const { mint, transfer, fetchBalance } = useToken();
+  const { address, connected } = useWallet();
+
+  useEffect(() => {
+    if (connected && address) {
+      fetchBalance(address).then(setBalance);
+    }
+  }, [connected, address, fetchBalance]);
+
+  const handleAction = async () => {
+    if (!amount || isNaN(Number(amount)) || !connected) return;
+    setIsPending(true);
+    try {
+      const uAmount = Math.floor(Number(amount) * 1_000_000);
+      if (activeTab === "deposit") {
+        await mint(uAmount, address); // Minting to user instead of real vault deposit since we are using saturn-token
+      } else {
+        await transfer(uAmount, "SP2ZNGJ85ENDY6QRHQ5P2D4REKG7G7FWEHGD1Z387"); // Transfer to a dump address to simulate withdrawal
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsPending(false);
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -56,27 +88,43 @@ export default function DepositWithdrawPage() {
                 <div>
                   <label className="text-sm font-medium mb-1.5 flex justify-between">
                     Amount
-                    <span className="text-muted-foreground text-xs font-mono">Balance: 1.250 sBTC</span>
+                    <span className="text-muted-foreground text-xs font-mono">
+                      Balance: {connected ? (balance / 1_000_000).toFixed(3) : "0.000"} sBTC
+                    </span>
                   </label>
                   <div className="relative">
                     <Input 
                       type="number" 
                       placeholder="0.00" 
+                      value={amount}
+                      onChange={(e) => setAmount(e.target.value)}
                       className="text-2xl font-mono h-14 bg-black/40 border-white/10 pr-24"
                     />
                     <div className="absolute top-1/2 -translate-y-1/2 right-3 flex items-center gap-2">
-                      <Button variant="ghost" size="sm" className="h-8 text-xs px-2 text-primary hover:text-primary">MAX</Button>
+                       <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="h-8 text-xs px-2 text-primary hover:text-primary hover:bg-white/5"
+                        onClick={() => setAmount((balance / 1_000_000).toString())}
+                      >
+                        MAX
+                      </Button>
                       <span className="text-muted-foreground font-medium">sBTC</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="pt-4">
-                  <Button className="w-full h-12 text-base shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+                  <Button 
+                    className="w-full h-12 text-base shadow-[0_0_15px_rgba(59,130,246,0.3)]"
+                    disabled={isPending || !connected || !amount}
+                    onClick={handleAction}
+                  >
+                    {isPending ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : null}
                     {activeTab === 'deposit' ? (
-                      <><ArrowDownToLine className="mr-2 h-5 w-5" /> Deposit sBTC</>
+                      <>{!isPending && <ArrowDownToLine className="mr-2 h-5 w-5" />} Deposit sBTC</>
                     ) : (
-                      <><ArrowUpFromLine className="mr-2 h-5 w-5" /> Withdraw sBTC</>
+                      <>{!isPending && <ArrowUpFromLine className="mr-2 h-5 w-5" />} Withdraw sBTC</>
                     )}
                   </Button>
                 </div>

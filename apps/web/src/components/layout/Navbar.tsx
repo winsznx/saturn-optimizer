@@ -3,12 +3,19 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Shield } from "lucide-react";
+import { SaturnLogo } from "@/components/ui/saturn-logo";
+import { useWallet } from "@/lib/wallet";
 import { motion } from "framer-motion";
 
 export function Navbar() {
   const pathname = usePathname();
   const isDashboard = pathname?.startsWith("/dashboard");
+  const { connected, address, stxBalance, connect, disconnect } = useWallet();
+
+  const truncateAddress = (addr: string) => {
+    if (!addr) return "";
+    return `${addr.slice(0, 4)}...${addr.slice(-4)}`;
+  };
 
   return (
     <motion.header
@@ -18,7 +25,7 @@ export function Navbar() {
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <Shield className="h-6 w-6 text-primary" />
+          <SaturnLogo className="h-7 w-7" />
           <Link href="/" className="font-bold text-xl tracking-tight">
             Saturn<span className="text-primary">Optimizer</span>
           </Link>
@@ -39,11 +46,22 @@ export function Navbar() {
 
         <div className="flex items-center gap-4">
           {isDashboard ? (
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground hidden sm:inline-block">Connected: 0x123...abc</span>
-              <Button variant="outline" size="sm" className="border-white/20">
-                Disconnect
-              </Button>
+            <div className="flex items-center gap-4">
+              {connected ? (
+                <>
+                  <div className="hidden sm:flex flex-col items-end">
+                    <span className="text-sm font-medium">{stxBalance} STX</span>
+                    <span className="text-xs text-muted-foreground">{truncateAddress(address)}</span>
+                  </div>
+                  <Button variant="outline" size="sm" className="border-white/20" onClick={disconnect}>
+                    Disconnect
+                  </Button>
+                </>
+              ) : (
+                <Button variant="glass" size="sm" className="border border-primary/50 bg-primary/20 hover:bg-primary/40" onClick={connect}>
+                  Connect Wallet
+                </Button>
+              )}
             </div>
           ) : (
             <Link href="/dashboard">

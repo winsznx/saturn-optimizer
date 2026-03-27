@@ -3,9 +3,38 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ShieldAlert, AlertTriangle, ArrowLeftRight } from "lucide-react";
+import { ShieldAlert, AlertTriangle, ArrowLeftRight, Loader2 } from "lucide-react";
+import { useToken } from "@/lib/hooks";
+import { useWallet } from "@/lib/wallet";
+import { useState, useEffect } from "react";
 
 export default function SafeWithdrawPage() {
+  const [amount, setAmount] = useState("");
+  const [isPending, setIsPending] = useState(false);
+  const [balance, setBalance] = useState(0);
+
+  const { transfer, fetchBalance } = useToken();
+  const { address, connected } = useWallet();
+
+  useEffect(() => {
+    if (connected && address) {
+      fetchBalance(address).then(setBalance);
+    }
+  }, [connected, address, fetchBalance]);
+
+  const handleWithdraw = async () => {
+    if (!amount || isNaN(Number(amount)) || !connected) return;
+    setIsPending(true);
+    try {
+      const uAmount = Math.floor(Number(amount) * 1_000_000);
+      await transfer(uAmount, "SP2ZNGJ85ENDY6QRHQ5P2D4REKG7G7FWEHGD1Z387"); // Dump address for mock safe-withdraw
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsPending(false);
+    }
+  };
+
   return (
     <div className="max-w-4xl mx-auto">
       <div className="mb-8">
@@ -30,16 +59,27 @@ export default function SafeWithdrawPage() {
             <div>
               <label className="text-sm font-medium mb-1.5 flex justify-between text-white/80">
                 Amount to burn
-                <span className="text-white/50 text-xs font-mono">Max: 1,024 Shares</span>
+                <span className="text-white/50 text-xs font-mono">
+                  Max: {connected ? (balance / 1_000_000).toFixed(3) : "0.000"} Shares
+                </span>
               </label>
               <div className="relative">
                 <Input 
                   type="number" 
                   placeholder="0" 
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
                   className="text-2xl font-mono h-14 bg-black/60 border-destructive/30 pr-24 text-white"
                 />
                 <div className="absolute top-1/2 -translate-y-1/2 right-3 flex items-center gap-2">
-                  <Button variant="ghost" size="sm" className="h-8 text-xs px-2 text-destructive hover:bg-destructive/20 hover:text-destructive">MAX</Button>
+                   <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="h-8 text-xs px-2 text-destructive hover:bg-destructive/20 hover:text-destructive"
+                    onClick={() => setAmount((balance / 1_000_000).toString())}
+                   >
+                    MAX
+                   </Button>
                   <span className="text-white/50 font-medium text-xs">SIP-010</span>
                 </div>
               </div>
@@ -54,7 +94,13 @@ export default function SafeWithdrawPage() {
               <span className="text-xl font-mono text-white">0.350 <span className="text-sm text-muted-foreground ml-1">sBTC</span></span>
             </div>
 
-            <Button variant="destructive" className="w-full h-12 text-base shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:shadow-[0_0_30px_rgba(220,38,38,0.5)] border border-destructive-foreground/20 font-bold">
+            <Button 
+              variant="destructive" 
+              className="w-full h-12 text-base shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:shadow-[0_0_30px_rgba(220,38,38,0.5)] border border-destructive-foreground/20 font-bold"
+              disabled={isPending || !connected || !amount}
+              onClick={handleWithdraw}
+            >
+              {isPending ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : null}
               Confirm Emergency Withdrawal
             </Button>
           </CardContent>
