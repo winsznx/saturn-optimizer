@@ -71,3 +71,5 @@ settings/*-local.toml
 apps/web/.env*
 scripts/keeper/.env*
 chainhooks/*.local.json
+packages/
+saturnsdk/
