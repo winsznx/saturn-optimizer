@@ -1,14 +1,6 @@
 "use client";
 
 import { useCallback } from "react";
-import {
-  uintCV,
-  principalCV,
-  noneCV,
-  PostConditionMode,
-  AnchorMode,
-} from "@stacks/transactions";
-import { openContractCall } from "@stacks/connect";
 import { CONTRACTS, STACKS_API_URL } from "@/lib/contracts";
 import { useWallet } from "@/lib/wallet";
 
@@ -17,6 +9,9 @@ export function useGovernance() {
   const contract = CONTRACTS.GOVERNANCE;
 
   const pause = useCallback(async () => {
+    const { openContractCall } = await import("@stacks/connect");
+    const { PostConditionMode, AnchorMode } = await import("@stacks/transactions");
+    
     await openContractCall({
       contractAddress: contract.address,
       contractName: contract.name,
@@ -28,6 +23,9 @@ export function useGovernance() {
   }, [contract]);
 
   const unpause = useCallback(async () => {
+    const { openContractCall } = await import("@stacks/connect");
+    const { PostConditionMode, AnchorMode } = await import("@stacks/transactions");
+
     await openContractCall({
       contractAddress: contract.address,
       contractName: contract.name,
@@ -80,6 +78,9 @@ export function useToken() {
   const contract = CONTRACTS.TOKEN;
 
   const mint = useCallback(async (amount: number, recipient: string) => {
+    const { openContractCall } = await import("@stacks/connect");
+    const { uintCV, principalCV, PostConditionMode, AnchorMode } = await import("@stacks/transactions");
+
     await openContractCall({
       contractAddress: contract.address,
       contractName: contract.name,
@@ -91,6 +92,9 @@ export function useToken() {
   }, [contract]);
 
   const transfer = useCallback(async (amount: number, recipient: string) => {
+    const { openContractCall } = await import("@stacks/connect");
+    const { uintCV, principalCV, noneCV, PostConditionMode, AnchorMode } = await import("@stacks/transactions");
+
     await openContractCall({
       contractAddress: contract.address,
       contractName: contract.name,

@@ -8,14 +8,17 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import { showConnect, UserSession, AppConfig } from "@stacks/connect";
 import { APP_NAME, APP_ICON, STACKS_API_URL } from "@/lib/contracts";
 
-let userSession: UserSession | undefined;
+let userSession: any;
 
-if (typeof window !== "undefined") {
-  const appConfig = new AppConfig(["store_write"]);
-  userSession = new UserSession({ appConfig });
+async function initSession() {
+  if (typeof window !== "undefined" && !userSession) {
+    const { AppConfig, UserSession } = await import("@stacks/connect");
+    const appConfig = new AppConfig(["store_write"]);
+    userSession = new UserSession({ appConfig });
+  }
+  return userSession;
 }
 
 interface WalletState {
@@ -51,32 +54,37 @@ export function WalletProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (userSession && userSession.isUserSignedIn()) {
-      const userData = userSession.loadUserData();
-      const addr = userData.profile.stxAddress.mainnet;
-      setAddress(addr);
-      setConnected(true);
-      fetchBalance(addr);
-    }
+    initSession().then((session) => {
+      if (session && session.isUserSignedIn()) {
+        const userData = session.loadUserData();
+        const addr = userData.profile.stxAddress.mainnet;
+        setAddress(addr);
+        setConnected(true);
+        fetchBalance(addr);
+      }
+    });
   }, [fetchBalance]);
 
-  const connect = useCallback(() => {
-    if (!userSession) return;
+  const connect = useCallback(async () => {
+    const session = await initSession();
+    if (!session) return;
+    const { showConnect } = await import("@stacks/connect");
     showConnect({
       appDetails: { name: APP_NAME, icon: APP_ICON },
       onFinish: () => {
-        const userData = userSession!.loadUserData();
+        const userData = session.loadUserData();
         const addr = userData.profile.stxAddress.mainnet;
         setAddress(addr);
         setConnected(true);
         fetchBalance(addr);
       },
-      userSession,
+      userSession: session,
     });
   }, [fetchBalance]);
 
-  const disconnect = useCallback(() => {
-    if (userSession) userSession.signUserOut();
+  const disconnect = useCallback(async () => {
+    const session = await initSession();
+    if (session) session.signUserOut();
     setConnected(false);
     setAddress("");
     setStxBalance("0");
@@ -92,5 +100,3 @@ export function WalletProvider({ children }: { children: ReactNode }) {
 export function useWallet() {
   return useContext(WalletContext);
 }
-
-export { userSession };
