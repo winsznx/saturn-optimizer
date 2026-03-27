@@ -91,7 +91,7 @@ export default function SafeWithdrawPage() {
 
             <div className="p-4 rounded-lg bg-black/60 border border-destructive/20 flex justify-between items-center">
               <span className="text-sm font-medium text-white/80">You receive directly</span>
-              <span className="text-xl font-mono text-white">0.350 <span className="text-sm text-muted-foreground ml-1">sBTC</span></span>
+              <span className="text-xl font-mono text-white">{amount || "0.000"} <span className="text-sm text-muted-foreground ml-1">sBTC</span></span>
             </div>
 
             <Button 
@@ -123,11 +123,11 @@ export default function SafeWithdrawPage() {
               <div className="mt-4 pt-4 border-t border-orange-500/20">
                  <div className="flex justify-between items-center text-sm mb-2">
                    <span className="text-white/60">Total Vault Idle sBTC</span>
-                   <span className="font-mono text-white">0.350 sBTC</span>
+                   <span className="font-mono text-white">{connected ? (balance / 1_000_000).toFixed(3) : "0.000"} sBTC</span>
                  </div>
                  <div className="flex justify-between items-center text-sm">
                    <span className="text-white/60">Your Max Eligible Claim</span>
-                   <span className="font-mono text-white">4.200 sBTC</span>
+                   <span className="font-mono text-white">{connected ? (balance / 1_000_000).toFixed(3) : "0.000"} sBTC</span>
                  </div>
               </div>
             </CardContent>

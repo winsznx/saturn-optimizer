@@ -149,11 +149,11 @@ export default function DepositWithdrawPage() {
               <ul className="space-y-3 text-sm">
                 <li className="flex gap-2">
                   <div className="h-5 w-5 shrink-0 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-500 font-bold text-xs mt-0.5">1</div>
-                  <span className="text-white/80">Only exactly <strong className="font-mono text-white">0.5 sBTC</strong> will leave your wallet.</span>
+                  <span className="text-white/80">Only exactly <strong className="font-mono text-white">{amount || "0.00"} sBTC</strong> will leave your wallet.</span>
                 </li>
                 <li className="flex gap-2">
                   <div className="h-5 w-5 shrink-0 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-500 font-bold text-xs mt-0.5">2</div>
-                  <span className="text-white/80">You will receive exactly <strong className="font-mono text-white">450 SIP-010 Shares</strong> representing your claim.</span>
+                  <span className="text-white/80">You will receive exactly <strong className="font-mono text-white">{amount ? (Number(amount) * 1000).toFixed(0) : "0"} SIP-010 Shares</strong> representing your claim.</span>
                 </li>
               </ul>
             </CardContent>
@@ -163,15 +163,11 @@ export default function DepositWithdrawPage() {
              <CardContent className="p-6">
                <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Vault Activity</h3>
                <div className="space-y-4">
-                 {[1, 2, 3].map((i) => (
-                   <div key={i} className="flex justify-between items-center text-sm border-b border-white/5 pb-3 last:border-0 last:pb-0">
-                     <div className="flex items-center gap-2">
-                       <div className={`h-2 w-2 rounded-full ${i % 2 === 0 ? 'bg-primary' : 'bg-emerald-400'}`} />
-                       <span className="text-muted-foreground font-mono">SP...{i}X</span>
-                     </div>
-                     <span className="text-white">{i === 1 ? '1.2' : i === 2 ? '0.5' : '4.0'} sBTC</span>
-                   </div>
-                 ))}
+                 {!connected ? (
+                   <div className="text-sm text-muted-foreground italic text-center py-4">Connect wallet to view history</div>
+                 ) : (
+                   <div className="text-sm text-muted-foreground italic text-center py-4">No recent activity detected.</div>
+                 )}
                </div>
              </CardContent>
           </Card>

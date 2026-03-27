@@ -39,13 +39,13 @@ export default function DashboardOverview() {
               Total Managed Balance <Wallet className="h-3 w-3 ml-2" />
             </CardDescription>
             <CardTitle className="text-4xl font-mono mt-2 flex items-baseline gap-2">
-              {(totalSupply > 0 ? (totalSupply / 1_000_000).toFixed(3) : "4.285")}
+              {connected ? (totalSupply > 0 ? (totalSupply / 1_000_000).toFixed(3) : "0.000") : "---"}
               <span className="text-lg text-primary bg-primary/10 px-2 py-0.5 border border-primary/20 rounded-md">sBTC</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-sm font-medium text-emerald-400 flex items-center mt-2">
-              <ArrowUpRight className="h-4 w-4 mr-1" /> +0.15% this week
+            <div className={`text-sm font-medium flex items-center mt-2 ${connected ? 'text-emerald-400' : 'text-muted-foreground'}`}>
+              <ArrowUpRight className="h-4 w-4 mr-1" /> {connected ? "+0.00% this week" : "Connect to view stats"}
             </div>
           </CardContent>
         </Card>
@@ -56,7 +56,7 @@ export default function DashboardOverview() {
               Implied User Claim <Activity className="h-3 w-3 ml-2" />
             </CardDescription>
             <CardTitle className="text-4xl font-mono mt-2 flex items-baseline gap-2">
-              {connected && balance > 0 ? (balance / 1_000_000).toFixed(3) : "1.024"}
+              {connected ? (balance / 1_000_000).toFixed(3) : "---"}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -81,9 +81,9 @@ export default function DashboardOverview() {
             </CardTitle>
           </CardHeader>
           <CardContent className="relative z-10">
-            <div className="text-sm text-muted-foreground mt-4 flex justify-between items-center">
+            <div className={`text-sm mt-4 flex justify-between items-center ${connected ? 'text-muted-foreground' : 'text-muted-foreground/50'}`}>
               <span>Next Harvest Route:</span>
-              <span className="font-mono text-white">StackingDAO</span>
+              <span className="font-mono text-white/50">{connected ? "Awaiting Deposits" : "---"}</span>
             </div>
           </CardContent>
         </Card>
@@ -93,46 +93,20 @@ export default function DashboardOverview() {
       <h2 className="text-lg font-bold tracking-tight mb-4 flex items-center">
         <LineChart className="h-5 w-5 mr-2 text-primary" /> Strategy Exposure
       </h2>
-      <div className="grid md:grid-cols-2 gap-6 mb-8">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Zest Earn</CardTitle>
-            <CardDescription>Supplied sBTC</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="flex justify-between items-end mb-2">
-              <span className="text-2xl font-mono">2.100 sBTC</span>
-              <span className="text-sm text-emerald-400">49% Allocation</span>
-            </div>
-            <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-              <div className="h-full bg-emerald-400 rounded-full w-[49%]"></div>
-            </div>
-            <div className="mt-4 pt-4 border-t border-white/10 flex justify-between text-xs text-muted-foreground">
-              <span>Adapter Permit</span>
-              <span className="text-emerald-400 font-medium">Valid</span>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">BitFlow Pools</CardTitle>
-            <CardDescription>sBTC / stSTX</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="flex justify-between items-end mb-2">
-              <span className="text-2xl font-mono">1.835 sBTC</span>
-              <span className="text-sm text-blue-400">42% Allocation</span>
-            </div>
-            <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-              <div className="h-full bg-blue-400 rounded-full w-[42%]"></div>
-            </div>
-            <div className="mt-4 pt-4 border-t border-white/10 flex justify-between text-xs text-muted-foreground">
-              <span>Adapter Permit</span>
-              <span className="text-emerald-400 font-medium">Valid</span>
-            </div>
-          </CardContent>
-        </Card>
+      <div className="mb-8">
+        {!connected ? (
+          <div className="flex flex-col items-center justify-center p-12 border border-white/5 bg-white/5 rounded-xl border-dashed">
+            <Wallet className="h-10 w-10 text-muted-foreground mb-4 opacity-50" />
+            <h3 className="text-lg font-medium text-white/80">Wallet Disconnected</h3>
+            <p className="text-sm text-muted-foreground">Connect your wallet to view active protocol positions</p>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center p-12 border border-white/5 bg-white/5 rounded-xl border-dashed">
+            <Activity className="h-10 w-10 text-muted-foreground mb-4 opacity-50" />
+            <h3 className="text-lg font-medium text-white/80">No Active Positions</h3>
+            <p className="text-sm text-muted-foreground">Deposit assets to see strategy exposure metrics</p>
+          </div>
+        )}
       </div>
 
       {/* Safe Mode Controls */}
@@ -150,11 +124,15 @@ export default function DashboardOverview() {
           <div className="flex items-center justify-between p-4 rounded-lg bg-black/40 border border-destructive/20 mt-2">
              <div className="flex flex-col">
                <span className="text-sm font-medium text-white">Available Idle Liquidity</span>
-               <span className="text-2xl font-mono text-destructive tracking-widest mt-1">0.350 sBTC</span>
+               <span className="text-2xl font-mono text-destructive tracking-widest mt-1">
+                 {connected ? (balance / 1_000_000).toFixed(3) : "0.000"} <span className="text-sm">sBTC</span>
+               </span>
              </div>
-             <Button variant="destructive" className="px-8 shadow-[0_0_15px_rgba(220,38,38,0.4)] hover:shadow-[0_0_25px_rgba(220,38,38,0.6)] border border-destructive-foreground/20">
-               Emergency Exit
-             </Button>
+             <a href="/dashboard/safe-withdraw">
+               <Button variant="destructive" className="px-8 shadow-[0_0_15px_rgba(220,38,38,0.4)] hover:shadow-[0_0_25px_rgba(220,38,38,0.6)] border border-destructive-foreground/20">
+                 Emergency Exit
+               </Button>
+             </a>
           </div>
         </CardContent>
       </Card>
