@@ -1,7 +1,7 @@
 ;; Saturn Token (SIP-010 compliant)
 ;; Deployer can mint freely. No vault dependency required.
 
-(impl-trait .sip010-ft-trait.sip010-ft-trait)
+(impl-trait 'SP31DP8F8CF2GXSZBHHHK5J6Y061744E1TNFGYWYV.ip010-ft-trait.sip010-ft-trait)
 
 (define-constant ERR_UNAUTHORIZED u100)
 (define-constant ERR_INVALID_AMOUNT u102)
