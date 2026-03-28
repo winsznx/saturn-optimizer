@@ -62,8 +62,8 @@ export default function LandingPage() {
                 </Button>
               </Link>
               <Link href="#features">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto text-base h-14 px-8 border-white/20 hover:bg-white/5">
-                  See how it works
+                <Button id="btn-how-it-works" variant="outline" size="lg" className="w-full sm:w-auto text-base h-14 px-8 border-white/20 hover:bg-white/5">
+                  How it works
                 </Button>
               </Link>
             </motion.div>
