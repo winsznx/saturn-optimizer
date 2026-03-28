@@ -10,13 +10,23 @@ export const CONTRACTS = {
   },
   TOKEN: {
     address: DEPLOYER,
-    name: "saturn-token",
+    name: "saturn-token-v2",
+  },
+  VAULT: {
+    address: DEPLOYER,
+    name: "saturn-vault",
+  },
+  METRICS: {
+    address: DEPLOYER,
+    name: "saturn-metrics",
   },
   SIP010_TRAIT: {
     address: DEPLOYER,
     name: "ip010-ft-trait",
   },
 };
+
+export const VAULT_ADDRESS = `${DEPLOYER}.saturn-vault`;
 
 export const APP_NAME = "Saturn Optimizer";
 export const APP_ICON = "/icon.svg";
