@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowUpRight, ShieldCheck, Activity, LineChart, Wallet, ShieldAlert, PauseCircle, ExternalLink } from "lucide-react";
 import { useGovernance, useVault } from "@/lib/hooks";
 import { useWallet } from "@/lib/wallet";
@@ -93,7 +94,7 @@ export default function DashboardOverview() {
             </CardDescription>
             <CardTitle className="text-4xl font-mono mt-2 flex items-baseline gap-2">
               {loading ? (
-                <span className="text-muted-foreground text-2xl animate-pulse">...</span>
+                <Skeleton className="h-10 w-32 bg-white/5" />
               ) : (
                 <>{(totalManaged / 1_000_000).toFixed(4)}</>
               )}
@@ -137,7 +138,7 @@ export default function DashboardOverview() {
             </CardDescription>
             <CardTitle className="text-2xl mt-2 flex items-center">
               {loading ? (
-                <span className="text-muted-foreground animate-pulse">Loading...</span>
+                <Skeleton className="h-8 w-24 bg-white/5" />
               ) : isPaused ? (
                 <span className="text-orange-500 flex items-center">Paused <PauseCircle className="h-5 w-5 ml-2" /></span>
               ) : (
