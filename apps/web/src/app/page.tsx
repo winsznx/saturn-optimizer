@@ -2,6 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { ArrowRight, ShieldCheck, Layers, Bitcoin, Activity } from "lucide-react";
 import Link from "next/link";
 import * as motion from "framer-motion/client";
@@ -23,10 +24,10 @@ export default function LandingPage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-primary mb-8 backdrop-blur-sm">
+              <Badge variant="default" className="mb-8">
                 <span className="flex h-2 w-2 rounded-full bg-primary mr-2 animate-pulse"></span>
                 The Management Layer for Stacks BTCFi
-              </div>
+              </Badge>
             </motion.div>
 
             <motion.h1
@@ -115,9 +116,9 @@ export default function LandingPage() {
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-50" />
               <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12 relative z-10">
                 <div className="flex flex-col justify-center">
-                  <div className="inline-flex items-center rounded-full bg-destructive/10 px-3 py-1 text-xs font-medium text-destructive mb-4 w-max">
+                  <Badge variant="destructive" className="mb-4 w-max">
                     <Activity className="h-3 w-3 mr-1" /> Built-in Fallbacks
-                  </div>
+                  </Badge>
                   <h3 className="text-2xl md:text-3xl font-bold mb-4">Guaranteed Escape Hatches</h3>
                   <p className="text-muted-foreground leading-relaxed">
                     Users can always redeem idle liquidity via <code className="text-primary bg-primary/10 px-1 py-0.5 rounded">safe-withdraw</code> without triggering complex strategy code. If a protocol fails, withdrawals revert locally instead of leaving users entirely stuck.
