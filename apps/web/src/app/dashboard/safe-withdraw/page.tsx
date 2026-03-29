@@ -10,13 +10,7 @@ import { useWallet } from "@/lib/wallet";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-type Asset = "sbtc" | "stx";
-
-interface TxStatus {
-  type: "success" | "error";
-  message: string;
-  txId?: string;
-}
+import type { Asset, TxStatus, UserPosition } from "@/lib/types";
 
 export default function SafeWithdrawPage() {
   const [amount, setAmount] = useState("");
