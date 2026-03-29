@@ -10,19 +10,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { DEPLOYER } from "@/lib/contracts";
 
-interface VaultBalances {
-  idleSbtc: number;
-  idleStx: number;
-  managedSbtc: number;
-  managedStx: number;
-  managedStstx: number;
-}
-
-interface UserPosition {
-  sbtcShares: number;
-  stxShares: number;
-}
-
+import type { VaultBalances, UserPosition, TotalShares } from "@/lib/types";
 export default function DashboardOverview() {
   const { fetchPauseState } = useGovernance();
   const { fetchVaultBalances, fetchTotalShares, fetchUserPosition } = useVault();
