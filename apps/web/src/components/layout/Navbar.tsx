@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { SaturnLogo } from "@/components/ui/saturn-logo";
+import { truncateAddress } from "@/lib/utils";
 import { useWallet } from "@/lib/wallet";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -14,11 +15,6 @@ export function Navbar() {
   const isDashboard = pathname?.startsWith("/dashboard");
   const { connected, address, stxBalance, connect, disconnect } = useWallet();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const truncateAddress = (addr: string) => {
-    if (!addr) return "";
-    return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
-  };
 
   return (
     <motion.header
