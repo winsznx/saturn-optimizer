@@ -10,14 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useVault } from "@/lib/hooks";
 import { useWallet } from "@/lib/wallet";
 
-type Asset = "sbtc" | "stx";
-type TabMode = "deposit" | "withdraw";
-
-interface TxStatus {
-  type: "success" | "error";
-  message: string;
-  txId?: string;
-}
+import type { Asset, TabMode, TxStatus, UserPosition } from "@/lib/types";
 
 export default function DepositWithdrawPage() {
   const [activeTab, setActiveTab] = useState<TabMode>("deposit");
