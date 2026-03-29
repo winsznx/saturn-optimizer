@@ -3,6 +3,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
 import { ShieldAlert, AlertTriangle, ArrowLeftRight, Loader2, CheckCircle, XCircle, ExternalLink } from "lucide-react";
 import { useVault } from "@/lib/hooks";
 import { useWallet } from "@/lib/wallet";
@@ -208,7 +209,8 @@ export default function SafeWithdrawPage() {
                 Safe withdrawal only draws from idle vault liquidity, not from deployed strategies. You can only withdraw
                 up to the idle amount currently sitting in the vault contract.
               </p>
-              <div className="mt-4 pt-4 border-t border-orange-500/20 space-y-2">
+              <Separator className="my-4 bg-orange-500/20" />
+              <div className="space-y-2">
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-white/60">Idle {assetLabel} in Vault</span>
                   <span className="font-mono text-white">{(idleAvailable / 1_000_000).toFixed(4)} {assetLabel}</span>

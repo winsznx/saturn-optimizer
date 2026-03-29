@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
 import { ArrowDownToLine, ArrowUpFromLine, ShieldCheck, Loader2, CheckCircle, XCircle, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useVault } from "@/lib/hooks";
@@ -262,7 +263,8 @@ export default function DepositWithdrawPage() {
                   <span className="text-muted-foreground">STX Shares</span>
                   <span className="font-mono text-white">{connected ? (userPosition.stxShares / 1_000_000).toFixed(4) : "---"}</span>
                 </div>
-                <div className="pt-3 border-t border-white/5">
+                <Separator className="my-4" />
+                <div>
                   <CardDescription className="text-xs">
                     Shares represent a proportional claim on vault assets. They are minted on deposit and burned on withdrawal.
                   </CardDescription>

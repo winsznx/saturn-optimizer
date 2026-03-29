@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
 import { ArrowDownUp, Info, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 import { useWallet } from "@/lib/wallet";
@@ -90,7 +91,7 @@ export default function SwapPage() {
           </div>
 
           <div className="relative h-8 flex justify-center items-center">
-            <div className="absolute left-0 right-0 h-px bg-white/5" />
+            <Separator className="absolute left-0 right-0" />
             <motion.button
               id="swap-flip-btn"
               whileHover={{ scale: 1.1 }}
@@ -124,7 +125,8 @@ export default function SwapPage() {
             </div>
           </div>
 
-          <div className="py-3 text-sm text-muted-foreground flex justify-between items-center border-t border-white/5 mt-2">
+          <Separator className="mt-2 text-muted-foreground" />
+          <div className="py-3 text-sm text-muted-foreground flex justify-between items-center">
             <span className="text-xs">Rate</span>
             <span className="text-xs font-mono">{rateLabel}</span>
           </div>
