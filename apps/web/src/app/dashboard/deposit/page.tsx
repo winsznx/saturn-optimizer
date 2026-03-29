@@ -9,6 +9,7 @@ import { ArrowDownToLine, ArrowUpFromLine, ShieldCheck, Loader2, CheckCircle, XC
 import { motion, AnimatePresence } from "framer-motion";
 import { useVault } from "@/lib/hooks";
 import { useWallet } from "@/lib/wallet";
+import { toMicroUnits, fromMicroUnits, isValidAmount } from "@/lib/format";
 
 import type { Asset, TabMode, TxStatus, UserPosition } from "@/lib/types";
 
@@ -35,11 +36,11 @@ export default function DepositWithdrawPage() {
   }, [loadPosition]);
 
   const handleAction = async () => {
-    if (!amount || isNaN(Number(amount)) || Number(amount) <= 0 || !connected) return;
+    if (!isValidAmount(amount) || !connected) return;
     setIsPending(true);
     setTxStatus(null);
     try {
-      const uAmount = Math.floor(Number(amount) * 1_000_000);
+      const uAmount = toMicroUnits(Number(amount));
       if (activeTab === "deposit") {
         if (activeAsset === "sbtc") {
           await depositSbtc(uAmount);
