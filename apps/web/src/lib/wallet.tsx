@@ -10,7 +10,9 @@ import {
 } from "react";
 import { APP_NAME, APP_ICON, STACKS_API_URL } from "@/lib/contracts";
 
-let userSession: any;
+import type { UserSession } from "@stacks/connect";
+
+let userSession: UserSession | undefined;
 
 async function initSession() {
   if (typeof window !== "undefined" && !userSession) {
