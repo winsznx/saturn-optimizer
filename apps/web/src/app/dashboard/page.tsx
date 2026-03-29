@@ -55,7 +55,13 @@ export default function DashboardOverview() {
     if (connected && address) {
       fetchUserPosition(address).then(setUserPosition);
     } else {
-      setUserPosition({ sbtcShares: 0, stxShares: 0 });
+      Promise.resolve().then(() => {
+        setUserPosition(prev => 
+          prev.sbtcShares === 0 && prev.stxShares === 0 
+            ? prev 
+            : { sbtcShares: 0, stxShares: 0 }
+        );
+      });
     }
   }, [connected, address, fetchUserPosition]);
 
