@@ -1,0 +1,9 @@
+node_modules
+dist
+build
+.next
+coverage
+apps/web/.next
+apps/web/out
+*.log
+package-lock.json
