@@ -1,25 +1,34 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 
+export type BadgeVariant =
+  | "default"
+  | "secondary"
+  | "destructive"
+  | "outline"
+  | "pulse";
+
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: "default" | "secondary" | "destructive" | "outline" | "pulse";
+  variant?: BadgeVariant;
 }
 
-const badgeVariants = {
-  default:
-    "inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-primary backdrop-blur-sm",
-  secondary:
-    "inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-medium text-foreground",
+const BASE =
+  "inline-flex items-center rounded-full px-3 py-1 text-sm font-medium backdrop-blur-sm";
+
+const VARIANT_CLASSES: Record<BadgeVariant, string> = {
+  default: "border border-primary/30 bg-primary/10 text-primary",
+  secondary: "border border-white/10 bg-white/5 text-foreground",
   destructive:
-    "inline-flex items-center rounded-full border border-destructive/30 bg-destructive/10 px-3 py-1 text-xs font-medium text-destructive",
-  outline:
-    "inline-flex items-center rounded-full border border-white/20 px-3 py-1 text-sm font-medium text-foreground",
-  pulse:
-    "inline-flex items-center rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-sm font-medium text-emerald-400 backdrop-blur-sm",
+    "border border-destructive/30 bg-destructive/10 text-xs text-destructive",
+  outline: "border border-white/20 text-foreground",
+  pulse: "border border-emerald-500/30 bg-emerald-500/10 text-emerald-400",
 };
 
 export function Badge({ className, variant = "default", ...props }: BadgeProps) {
   return (
-    <div className={cn(badgeVariants[variant], className)} {...props} />
-  )
+    <div
+      className={cn(BASE, VARIANT_CLASSES[variant], className)}
+      {...props}
+    />
+  );
 }
