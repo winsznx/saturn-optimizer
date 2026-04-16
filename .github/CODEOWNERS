@@ -1,0 +1,12 @@
+# Default owners for everything in the repo
+*                                @winsznx
+
+# Smart contract owners
+/contracts/                      @winsznx
+/tests/                          @winsznx
+/deployments/                    @winsznx
+
+# Web application owners
+/apps/web/                       @winsznx
+/apps/web/src/components/        @winsznx
+/apps/web/src/lib/               @winsznx
