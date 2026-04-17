@@ -15,7 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "@stacks/clarinet-sdk": "^3.9.0",
-    "@stacks/transactions": "^7.2.0",
+    "@stacks/transactions": "^7.4.0",
     "@types/node": "^24.4.0",
     "chokidar-cli": "^3.0.0",
     "tsx": "^4.19.2",
