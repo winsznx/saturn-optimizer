@@ -1,5 +1,4 @@
 export { Accordion, AccordionItem } from "./accordion";
-export { Alert, AlertDescription, AlertTitle } from "./alert";
 export { Avatar } from "./avatar";
 export { Badge } from "./badge";
 export { Breadcrumb } from "./breadcrumb";
