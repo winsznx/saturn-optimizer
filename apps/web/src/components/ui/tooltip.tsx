@@ -3,7 +3,8 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-export interface TooltipProps extends React.HTMLAttributes<HTMLSpanElement> {
+export interface TooltipProps
+  extends Omit<React.HTMLAttributes<HTMLSpanElement>, "content"> {
   content: React.ReactNode;
   side?: "top" | "bottom" | "left" | "right";
 }

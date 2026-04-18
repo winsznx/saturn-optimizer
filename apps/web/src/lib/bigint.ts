@@ -7,7 +7,7 @@ export function parseBigint(value: string): bigint {
 }
 
 export function divBigintToNumber(value: bigint, divisor: bigint, decimals = 6): number {
-  const scale = 10n ** BigInt(decimals);
+  const scale = BigInt(10) ** BigInt(decimals);
   const scaled = (value * scale) / divisor;
   return Number(scaled) / Number(scale);
 }
