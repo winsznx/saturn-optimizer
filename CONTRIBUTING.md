@@ -8,14 +8,34 @@
 
 ## Project conventions
 
-- Keep contract changes paired with tests
-- Preserve the Clarinet-first layout and update `Clarinet.toml` when adding contracts
-- Document security-sensitive behavior in `docs/threat-model.md` when it changes
-- Prefer explicit allowlists and Stacks-native safety features over overly generic abstractions
+## Development Workflow
+
+1.  **Fork & Clone**: Fork the repository and clone it locally.
+2.  **Branching**: Create a feature branch for your changes: `git checkout -b feat/your-feature`.
+3.  **Code**: Implement your changes following the [project conventions](#project-conventions).
+4.  **Test**: Ensure all tests pass: `npm test`.
+5.  **Lint**: Check for linting errors in the web app: `npm run lint -w apps/web`.
+6.  **Commit**: Commit your changes using [conventional commits](#commit-standards).
+
+## Commit Standards
+
+We use [Conventional Commits](https://www.conventionalcommits.org/) for automated changelog generation and versioning.
+
+Format: `<type>(<scope>): <description>`
+
+Common types:
+- `feat`: A new feature
+- `fix`: A bug fix
+- `docs`: Documentation only changes
+- `style`: Changes that do not affect the meaning of the code (white-space, formatting, etc)
+- `refactor`: A code change that neither fixes a bug nor adds a feature
+- `test`: Adding missing tests or correcting existing tests
+- `chore`: Changes to the build process or auxiliary tools and libraries
 
 ## Pull requests
 
-- Describe the user-visible or reviewer-visible effect
-- Note any changes to admin flows, pause behavior, or external protocol assumptions
-- Include the exact commands used for verification
+- **Small PRs**: Prefer small, focused PRs over monolithic changes.
+- **Documentation**: Update relevant documentation in `docs/` or README.
+- **Verification**: Include the exact commands used for verification (e.g., `npm test`, `clarinet check`).
+- **Description**: Clearly describe the impact of the change on the vault's security posture or user experience.
 
