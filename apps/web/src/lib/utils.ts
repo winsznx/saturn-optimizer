@@ -5,7 +5,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function truncateAddress(addr: string | undefined): string {
+export function truncateAddress(addr: string | undefined, start = 6, end = 4): string {
   if (!addr) return "";
-  return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
+  if (addr.length <= start + end) return addr;
+  return `${addr.slice(0, start)}...${addr.slice(-end)}`;
 }
