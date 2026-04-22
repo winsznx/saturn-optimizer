@@ -39,11 +39,48 @@ and explicit `as-contract` usage for vault-owned asset flows.
 - Strategy and adapter contracts that are mockable and allowlist-aware
 - Clarinet + Vitest tests, CI, and grant-review docs
 
+## Tech Stack
+
+- **Contracts**: [Clarity](https://docs.stacks.co/write-smart-contracts/overview) (Stacks)
+- **Frontend**: [Next.js](https://nextjs.org/) 15+, [React](https://reactjs.org/) 19, [Tailwind CSS](https://tailwindcss.com/)
+- **SDK**: [@stacks/transactions](https://github.com/hirosystems/stacks.js)
+- **Testing**: [Clarinet SDK](https://github.com/hirosystems/clarinet), [Vitest](https://vitest.dev/)
+- **Development**: [Node.js](https://nodejs.org/), [npm](https://www.npmjs.com/)
+
+## Project Structure
+
+```text
+├── apps/web           # Next.js frontend application
+├── contracts/         # Clarity smart contracts
+│   ├── mainnet/       # Production-ready contracts
+│   ├── vault/         # Core vault logic
+│   ├── strategies/    # Yield strategy implementations
+│   └── adapters/      # Protocol-specific adapters
+├── tests/             # Integration and unit tests
+├── scripts/           # Keeper and deployment scripts
+└── docs/              # Detailed documentation and specs
+```
+
 ## Quickstart
 
-1. Install dependencies with `npm install`
-2. Run `clarinet check`
-3. Run `npm test`
+### Prerequisites
+- [Clarinet](https://github.com/hirosystems/clarinet)
+- [Node.js](https://nodejs.org/) (v18+)
+
+### Setup
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run contract checks:
+   ```bash
+   npm run check
+   ```
+4. Run tests:
+   ```bash
+   npm test
+   ```
 
 ## Security Properties
 
