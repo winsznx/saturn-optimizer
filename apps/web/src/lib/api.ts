@@ -24,10 +24,18 @@ export async function fetchJson<T>(
 }
 
 function mergeSignals(a: AbortSignal, b: AbortSignal): AbortSignal {
+  if (a.aborted) return a;
+  if (b.aborted) return b;
+
   const controller = new AbortController();
-  const onAbort = () => controller.abort();
-  if (a.aborted || b.aborted) controller.abort();
+  const onAbort = () => {
+    controller.abort();
+    a.removeEventListener("abort", onAbort);
+    b.removeEventListener("abort", onAbort);
+  };
+
   a.addEventListener("abort", onAbort, { once: true });
   b.addEventListener("abort", onAbort, { once: true });
+
   return controller.signal;
 }
