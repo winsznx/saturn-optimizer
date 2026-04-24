@@ -9,7 +9,7 @@ export interface UseInViewOptions extends IntersectionObserverInit {
 export function useInView<T extends HTMLElement>(options: UseInViewOptions = {}): [RefObject<T | null>, boolean] {
   const { once = false, ...observerInit } = options;
   const ref = useRef<T | null>(null);
-  const [inView, setInView] = useState(false);
+  const [inView, setInView] = useState<boolean>(false);
 
   useEffect(() => {
     const node = ref.current;
