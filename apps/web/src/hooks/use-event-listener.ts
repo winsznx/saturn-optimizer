@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 export function useEventListener<K extends keyof WindowEventMap>(
   type: K,
   handler: (event: WindowEventMap[K]) => void,
-  element: Window | Document | HTMLElement | null = typeof window !== "undefined" ? window : null,
+  element: Window | Document | HTMLElement | null | React.RefObject<HTMLElement> = typeof window !== "undefined" ? window : null,
 ): void {
   const handlerRef = useRef(handler);
 
