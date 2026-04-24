@@ -7,7 +7,7 @@ export interface RetryOptions {
 }
 
 export async function retry<T>(
-  operation: () => Promise<T>,
+  operation: (attempt: number) => Promise<T>,
   options: RetryOptions = {}
 ): Promise<T> {
   const {
