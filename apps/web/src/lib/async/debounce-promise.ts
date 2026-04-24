@@ -1,6 +1,6 @@
 export function debouncePromise<A extends unknown[], R>(
   fn: (...args: A) => Promise<R>,
-  delayMs = 300,
+  delayMs = 300, options: { leading?: boolean } = {},
 ): (...args: A) => Promise<R> {
   let timeout: ReturnType<typeof setTimeout> | null = null;
   let pendingResolvers: Array<(value: R | PromiseLike<R>) => void> = [];
