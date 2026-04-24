@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const EVENTS = ["mousemove", "keydown", "mousedown", "touchstart", "scroll"] as const;
 
-export function useIdle(timeoutMs = 60_000): boolean {
+export function useIdle(timeoutMs = 60_000, options: { onIdle?: () => void } = {}): boolean {
   const [idle, setIdle] = useState(false);
 
   useEffect(() => {
