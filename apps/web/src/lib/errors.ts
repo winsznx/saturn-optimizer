@@ -33,3 +33,12 @@ export function toErrorMessage(error: unknown, fallback = "Unknown error"): stri
   if (typeof error === "string") return error;
   return fallback;
 }
+
+export class TransactionError extends Error {
+  txId?: string;
+  constructor(message: string, txId?: string) {
+    super(message);
+    this.name = "TransactionError";
+    this.txId = txId;
+  }
+}
