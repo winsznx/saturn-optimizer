@@ -8,7 +8,7 @@ export interface WindowSize {
 }
 
 export function useWindowSize(): WindowSize {
-  const [size, setSize] = useState<WindowSize>({ width: 0, height: 0 });
+  const [size, setSize] = useState<Readonly<WindowSize>>({ width: 0, height: 0 });
 
   useEffect(() => {
     const update = () => setSize({ width: window.innerWidth, height: window.innerHeight });
