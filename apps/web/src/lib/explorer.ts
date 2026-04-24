@@ -2,7 +2,7 @@ import { STACKS_NETWORK } from "@/lib/contracts";
 
 const BASE = "https://explorer.hiro.so";
 
-export function buildTxLink(txId: string, chain: string = STACKS_NETWORK): string {
+export function buildTxLink(txId: string, network: "mainnet" | "testnet" = "mainnet", chain: string = STACKS_NETWORK): string {
   return `${BASE}/txid/${txId}?chain=${chain}`;
 }
 
