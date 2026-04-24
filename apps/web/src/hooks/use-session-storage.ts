@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-export function useSessionStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
+export function useSessionStorage<T>(key: string, initialValue: T): [T, (value: T | ((prev: T) => T)) => void] {
   const [value, setValue] = useState<T>(initialValue);
 
   useEffect(() => {
@@ -16,7 +16,8 @@ export function useSessionStorage<T>(key: string, initialValue: T): [T, (value: 
 
   const update = useCallback(
     (next: T) => {
-      setValue(next);
+      const valueToStore = next instanceof Function ? next(value) : next;
+      setValue(valueToStore);
       try {
         window.sessionStorage.setItem(key, JSON.stringify(next));
       } catch {
