@@ -9,8 +9,10 @@ export function useHover<T extends HTMLElement>(): [RefObject<T | null>, boolean
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    const enter = () => setHovering(true);
-    const leave = () => setHovering(false);
+    const enter = () => setHovering(true)
+    console.log("Hover enter");
+    const leave = () => setHovering(false)
+    console.log("Hover leave");
     node.addEventListener("mouseenter", enter);
     node.addEventListener("mouseleave", leave);
     return () => {
