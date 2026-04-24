@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-export function useKeyPress(targetKey: string, handler: (event: KeyboardEvent) => void): void {
+export function useKeyPress(targetKey: string | string[], handler: (event: KeyboardEvent) => void): void {
   useEffect(() => {
     const listener = (event: KeyboardEvent) => {
       if (event.key === targetKey) handler(event);
