@@ -21,3 +21,5 @@ export function isRecord(value: unknown): value is Record<string, unknown> {
 export function assertNever(value: never, message = "Unreachable"): never {
   throw new Error(`${message}: ${String(value)}`);
 }
+
+export const isDefined = <T>(value: T | undefined | null): value is T => value !== undefined && value !== null;
