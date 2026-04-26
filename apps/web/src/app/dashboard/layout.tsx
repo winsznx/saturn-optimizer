@@ -51,7 +51,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           >
             <div className="flex items-center justify-between mb-8">
               <span className="font-bold text-lg">Menu</span>
-              <button onClick={() => setMobileOpen(false)} className="text-muted-foreground hover:text-white transition-colors">
+              <button onClick={useCallback(() => setMobileOpen(false), [])} className="text-muted-foreground hover:text-white transition-colors">
                 <X className="h-5 w-5" />
               </button>
             </div>
