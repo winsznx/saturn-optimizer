@@ -15,16 +15,16 @@ export function useSessionStorage<T>(key: string, initialValue: T): [T, (value: 
   }, [key]);
 
   const update = useCallback(
-    (next: T) => {
+    (next: T | ((prev: T) => T)) => {
       const valueToStore = next instanceof Function ? next(value) : next;
       setValue(valueToStore);
       try {
-        window.sessionStorage.setItem(key, JSON.stringify(next));
+        window.sessionStorage.setItem(key, JSON.stringify(valueToStore));
       } catch {
         // ignore
       }
     },
-    [key],
+    [key, value],
   );
 
   return [value, update];
