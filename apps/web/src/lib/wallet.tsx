@@ -24,12 +24,11 @@ async function initSession() {
 }
 
 interface WalletState {
-  readonly 
-  connected: boolean;
-  address: string;
-  stxBalance: string;
-  connect: () => void;
-  disconnect: () => void;
+  readonly connected: boolean;
+  readonly address: string;
+  readonly stxBalance: string;
+  readonly connect: () => void;
+  readonly disconnect: () => void;
 }
 
 const WalletContext = createContext<WalletState>({
