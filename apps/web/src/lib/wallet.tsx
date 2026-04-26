@@ -24,6 +24,7 @@ async function initSession() {
 }
 
 interface WalletState {
+  readonly 
   connected: boolean;
   address: string;
   stxBalance: string;
