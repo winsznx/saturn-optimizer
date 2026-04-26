@@ -15,7 +15,7 @@ import type { Asset, TxStatus, UserPosition } from "@/lib/types";
 export default function SafeWithdrawPage() {
   const [amount, setAmount] = useState("");
   const [activeAsset, setActiveAsset] = useState<Asset>("sbtc");
-  const [isPending, setIsPending] = useState(false);
+  const [isPending, setIsPending] = useState<boolean>(false);
   const [txStatus, setTxStatus] = useState<TxStatus | null>(null);
   const [userPosition, setUserPosition] = useState({ sbtcShares: 0, stxShares: 0 });
 
