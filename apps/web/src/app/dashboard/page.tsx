@@ -136,11 +136,11 @@ export default function DashboardOverview() {
           </CardHeader>
           <CardContent className="relative z-10">
             <div className="text-sm mt-4 flex justify-between items-center text-muted-foreground">
-              <span>Total sBTC Shares:</span>
+              <span>Total sBTC Units:</span>
               <span className="font-mono text-white/50">{(totalShares.sbtc / 1_000_000).toFixed(4)}</span>
             </div>
             <div className="text-sm mt-1 flex justify-between items-center text-muted-foreground">
-              <span>Total STX Shares:</span>
+              <span>Total STX Units:</span>
               <span className="font-mono text-white/50">{(totalShares.stx / 1_000_000).toFixed(4)}</span>
             </div>
           </CardContent>
