@@ -9,6 +9,7 @@ import { useVault } from "@/lib/hooks";
 import { useWallet } from "@/lib/wallet";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { toMicroUnits } from "@/lib/format";
 
 import type { Asset, TxStatus, UserPosition } from "@/lib/types";
 
@@ -41,7 +42,7 @@ export default function SafeWithdrawPage() {
     setIsPending(true);
     setTxStatus(null);
     try {
-      const uAmount = Math.floor(Number(amount) * 1_000_000);
+      const uAmount = toMicroUnits(amount);
       if (activeAsset === "sbtc") {
         await safeWithdrawSbtc(uAmount);
       } else {
