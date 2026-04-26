@@ -7,3 +7,5 @@ export { compoundInterest, continuousCompound } from "./compound";
 export { percentageChange, percentageChangeBps } from "./percentage-change";
 export { clamp, clamp01 } from "./clamp";
 export { lerp, inverseLerp } from "./lerp";
+
+// optimized math
