@@ -1,7 +1,7 @@
 import { Copy, LayoutDashboard, Wallet, ShieldAlert, FileText, ArrowLeftRight } from "lucide-react";
 import Link from "next/link";
 import { useCallback } from "react";
-import { DEPLOYER } from "@/lib/contracts";
+import { DEPLOYER_ADDRESS } from "@/lib/contracts";
 
 export const NAV_ITEMS = [
   { href: "/dashboard", icon: LayoutDashboard, label: "Overview", exact: true },
@@ -11,7 +11,7 @@ export const NAV_ITEMS = [
 
 export function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate?: () => void }) {
   const copyVaultAddress = useCallback(() => {
-    navigator.clipboard.writeText(DEPLOYER);
+    navigator.clipboard.writeText(DEPLOYER_ADDRESS);
   }, []);
 
   return (
@@ -70,13 +70,13 @@ export function SidebarContent({ pathname, onNavigate }: { pathname: string; onN
           <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
           <div className="text-xs text-muted-foreground mb-1 relative z-10">Vault Contract</div>
           <div className="flex items-center gap-2 text-sm font-medium font-mono truncate relative z-10">
-            <span className="truncate">{DEPLOYER.slice(0, 8)}...{DEPLOYER.slice(-6)}</span>
+            <span className="truncate">{DEPLOYER_ADDRESS.slice(0, 8)}...{DEPLOYER_ADDRESS.slice(-6)}</span>
             <Copy className="h-3 w-3 text-muted-foreground hover:text-primary shrink-0" />
           </div>
         </div>
         <div className="mt-4 px-3">
           <a
-            href={`https://explorer.hiro.so/address/${DEPLOYER}?chain=mainnet`}
+            href={`https://explorer.hiro.so/address/${DEPLOYER_ADDRESS}?chain=mainnet`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center text-xs text-muted-foreground hover:text-white transition-colors"
