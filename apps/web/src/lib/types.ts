@@ -3,25 +3,29 @@ export type Asset = "sbtc" | "stx";
 export type TabMode = "deposit" | "withdraw";
 
 export interface TxStatus {
-  type: "success" | "error";
-  message: string;
+  readonly 
+  readonly type: "success" | "error";
+  readonly message: string;
   txId?: string;
 }
 
 export interface UserPosition {
-  sbtcShares: number;
-  stxShares: number;
+  readonly 
+  readonly sbtcShares: number;
+  readonly stxShares: number;
 }
 
 export interface VaultBalances {
-  idleSbtc: number;
-  idleStx: number;
-  managedSbtc: number;
-  managedStx: number;
-  managedStstx: number;
+  readonly 
+  readonly idleSbtc: number;
+  readonly idleStx: number;
+  readonly managedSbtc: number;
+  readonly managedStx: number;
+  readonly managedStstx: number;
 }
 
 export interface TotalShares {
-  sbtc: number;
-  stx: number;
+  readonly 
+  readonly sbtc: number;
+  readonly stx: number;
 }
