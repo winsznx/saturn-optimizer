@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
-import { CONTRACTS, STACKS_API_URL, DEPLOYER } from "@/lib/contracts";
+import { CONTRACTS, STACKS_API_URL, DEPLOYER_ADDRESS } from "@/lib/contracts";
 import { useWallet } from "@/lib/wallet";
 import { encodePrincipalArg, decodeClarityUint } from "./utils";
 
@@ -9,7 +9,7 @@ export function useToken() {
   const { address } = useWallet();
   const contract = CONTRACTS.TOKEN;
 
-  const mint = useCallback(async (amount: number, recipient: string) => {
+  const mint = useCallback(async (amount: number | bigint, recipient: string) => {
     const { openContractCall } = await import("@stacks/connect");
     const { uintCV, principalCV, PostConditionMode, AnchorMode } = await import("@stacks/transactions");
 
@@ -23,7 +23,7 @@ export function useToken() {
     });
   }, [contract]);
 
-  const transfer = useCallback(async (amount: number, recipient: string) => {
+  const transfer = useCallback(async (amount: number | bigint, recipient: string) => {
     const { openContractCall } = await import("@stacks/connect");
     const { uintCV, principalCV, noneCV, PostConditionMode, AnchorMode } = await import("@stacks/transactions");
 
@@ -51,7 +51,7 @@ export function useToken() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            sender: DEPLOYER,
+            sender: DEPLOYER_ADDRESS,
             arguments: [encodePrincipalArg(owner)],
           }),
         }
@@ -77,7 +77,7 @@ export function useToken() {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sender: DEPLOYER, arguments: [] }),
+          body: JSON.stringify({ sender: DEPLOYER_ADDRESS, arguments: [] }),
         }
       );
       const data = await res.json();
