@@ -5,28 +5,28 @@ export const DEPLOYER_ADDRESS: string = "SP31DP8F8CF2GXSZBHHHK5J6Y061744E1TNFGYW
 
 export const CONTRACTS = {
   GOVERNANCE: {
-    address: DEPLOYER,
+    address: DEPLOYER_ADDRESS,
     name: "saturn-governance",
   },
   TOKEN: {
-    address: DEPLOYER,
+    address: DEPLOYER_ADDRESS,
     name: "saturn-token-v2",
   },
   VAULT: {
-    address: DEPLOYER,
+    address: DEPLOYER_ADDRESS,
     name: "saturn-vault",
   },
   METRICS: {
-    address: DEPLOYER,
+    address: DEPLOYER_ADDRESS,
     name: "saturn-metrics",
   },
   SIP010_TRAIT: {
-    address: DEPLOYER,
+    address: DEPLOYER_ADDRESS,
     name: "ip010-ft-trait",
   },
 };
 
-export const VAULT_ADDRESS = `${DEPLOYER}.saturn-vault`;
+export const VAULT_ADDRESS = `${DEPLOYER_ADDRESS}.saturn-vault`;
 
 export const APP_NAME = "Saturn Optimizer";
 export const APP_ICON = "/icon.svg";
