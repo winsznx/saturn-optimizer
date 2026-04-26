@@ -1,8 +1,6 @@
 import { describe, it, expect } from "vitest";
+import { isString, isNumber, isRecord as isObject } from "../../src/lib/guards";
 import { 
-  isString, 
-  isNumber, 
-  isObject, 
   isNonEmptyString,
   isHexString,
   isTxId
