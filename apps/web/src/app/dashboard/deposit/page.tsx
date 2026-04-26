@@ -41,7 +41,7 @@ export default function DepositWithdrawPage() {
     setIsPending(true);
     setTxStatus(null);
     try {
-      const uAmount = toMicroUnits(Number(amount));
+      const uAmount = toMicroUnits(amount);
       if (activeTab === "deposit") {
         if (activeAsset === "sbtc") {
           await depositSbtc(uAmount);
