@@ -13,7 +13,7 @@ const SBTC_STX_RATE = 94200;
 
 export default function SwapPage() {
   const [fromAsset, setFromAsset] = useState<"stx" | "sbtc">("stx");
-  const [fromAmount, setFromAmount] = useState("");
+  const [fromAmount, setFromAmount] = useState<string>("");
   const { connected, stxBalance, connect } = useWallet();
 
   const toAsset = fromAsset === "stx" ? "sbtc" : "stx";
