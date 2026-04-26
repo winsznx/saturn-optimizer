@@ -3,7 +3,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import * as motion from "framer-motion/client";
 import { SidebarContent } from "@/components/layout/sidebar";
 
@@ -40,7 +40,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <div className="fixed inset-0 z-50 md:hidden">
           <div
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            onClick={() => setMobileOpen(false)}
+            onClick={useCallback(() => setMobileOpen(false), [])}
           />
           <motion.div
             initial={{ x: "-100%" }}
