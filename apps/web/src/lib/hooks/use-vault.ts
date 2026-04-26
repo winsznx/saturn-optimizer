@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
-import { CONTRACTS, STACKS_API_URL, DEPLOYER } from "@/lib/contracts";
+import { CONTRACTS, STACKS_API_URL, DEPLOYER_ADDRESS } from "@/lib/contracts";
 import { useWallet } from "@/lib/wallet";
 import { encodePrincipalArg } from "./utils";
 
@@ -9,7 +9,7 @@ export function useVault() {
   const { address } = useWallet();
   const contract = CONTRACTS.VAULT;
 
-  const depositSbtc = useCallback(async (amount: number) => {
+  const depositSbtc = useCallback(async (amount: number | bigint) => {
     const { openContractCall } = await import("@stacks/connect");
     const { uintCV, PostConditionMode, AnchorMode } = await import("@stacks/transactions");
 
@@ -23,7 +23,7 @@ export function useVault() {
     });
   }, [contract]);
 
-  const depositStx = useCallback(async (amount: number) => {
+  const depositStx = useCallback(async (amount: number | bigint) => {
     const { openContractCall } = await import("@stacks/connect");
     const { uintCV, PostConditionMode, AnchorMode } = await import("@stacks/transactions");
 
@@ -37,7 +37,7 @@ export function useVault() {
     });
   }, [contract]);
 
-  const withdrawSbtc = useCallback(async (shares: number) => {
+  const withdrawSbtc = useCallback(async (shares: number | bigint) => {
     const { openContractCall } = await import("@stacks/connect");
     const { uintCV, PostConditionMode, AnchorMode } = await import("@stacks/transactions");
 
@@ -51,7 +51,7 @@ export function useVault() {
     });
   }, [contract]);
 
-  const withdrawStx = useCallback(async (shares: number) => {
+  const withdrawStx = useCallback(async (shares: number | bigint) => {
     const { openContractCall } = await import("@stacks/connect");
     const { uintCV, PostConditionMode, AnchorMode } = await import("@stacks/transactions");
 
@@ -65,7 +65,7 @@ export function useVault() {
     });
   }, [contract]);
 
-  const safeWithdrawSbtc = useCallback(async (shares: number) => {
+  const safeWithdrawSbtc = useCallback(async (shares: number | bigint) => {
     const { openContractCall } = await import("@stacks/connect");
     const { uintCV, PostConditionMode, AnchorMode } = await import("@stacks/transactions");
 
@@ -79,7 +79,7 @@ export function useVault() {
     });
   }, [contract]);
 
-  const safeWithdrawStx = useCallback(async (shares: number) => {
+  const safeWithdrawStx = useCallback(async (shares: number | bigint) => {
     const { openContractCall } = await import("@stacks/connect");
     const { uintCV, PostConditionMode, AnchorMode } = await import("@stacks/transactions");
 
@@ -102,7 +102,7 @@ export function useVault() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            sender: DEPLOYER,
+            sender: DEPLOYER_ADDRESS,
             arguments: [encodePrincipalArg(owner)],
           }),
         }
@@ -138,7 +138,7 @@ export function useVault() {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sender: DEPLOYER, arguments: [] }),
+          body: JSON.stringify({ sender: DEPLOYER_ADDRESS, arguments: [] }),
         }
       );
       const data = await res.json();
@@ -169,7 +169,7 @@ export function useVault() {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sender: DEPLOYER, arguments: [] }),
+          body: JSON.stringify({ sender: DEPLOYER_ADDRESS, arguments: [] }),
         }
       );
       const data = await res.json();
