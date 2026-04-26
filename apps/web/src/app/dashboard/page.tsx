@@ -122,7 +122,7 @@ export default function DashboardOverview() {
           <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent z-0" />
           <CardHeader className="pb-2 relative z-10">
             <CardDescription className="flex items-center text-xs font-semibold uppercase tracking-wider">
-              Strategy Status <ShieldCheck className="h-3 w-3 ml-2 text-emerald-500" />
+              Strategy Execution Status <ShieldCheck className="h-3 w-3 ml-2 text-emerald-500" />
             </CardDescription>
             <CardTitle className="text-2xl mt-2 flex items-center">
               {loading ? (
