@@ -4,6 +4,9 @@
   "description": "Grant-ready Saturn Optimizer MVP",
   "type": "module",
   "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
   "scripts": {
     "check": "clarinet check",
     "test": "vitest run",
