@@ -8,7 +8,7 @@ import { useGovernance, useVault } from "@/lib/hooks";
 import { useWallet } from "@/lib/wallet";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { DEPLOYER } from "@/lib/contracts";
+import { DEPLOYER_ADDRESS } from "@/lib/contracts";
 
 import type { VaultBalances, UserPosition, TotalShares } from "@/lib/types";
 export default function DashboardOverview() {
@@ -64,7 +64,7 @@ export default function DashboardOverview() {
           <p className="text-muted-foreground">Monitor your exposure and vault health in real-time.</p>
         </div>
         <a
-          href={`https://explorer.hiro.so/address/${DEPLOYER}?chain=mainnet`}
+          href={`https://explorer.hiro.so/address/${DEPLOYER_ADDRESS}?chain=mainnet`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors border border-white/10 rounded-md px-3 py-2 w-max"
