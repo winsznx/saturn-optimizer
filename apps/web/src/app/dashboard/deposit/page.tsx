@@ -16,6 +16,7 @@ import type { Asset, TabMode, TxStatus, UserPosition } from "@/lib/types";
 export default function DepositWithdrawPage() {
   const [activeTab, setActiveTab] = useState<TabMode>("deposit");
   const [activeAsset, setActiveAsset] = useState<Asset>("sbtc");
+  const isSbtc = activeAsset === "sbtc";
   const [amount, setAmount] = useState("");
   const [isPending, setIsPending] = useState(false);
   const [txStatus, setTxStatus] = useState<TxStatus | null>(null);
