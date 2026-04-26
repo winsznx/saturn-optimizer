@@ -21,7 +21,7 @@ export async function retry<T>(
   let delay = initialDelayMs;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     try {
-      return await operation();
+      return await operation(attempt);
     } catch (error) {
       lastError = error;
       if (attempt === attempts || !shouldRetry(error, attempt)) break;
