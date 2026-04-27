@@ -1,8 +1,8 @@
 import * as React from "react";
 import { ExternalLink as ExternalLinkIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const EXPLORER_BASE = "https://explorer.hiro.so/txid";
+import { buildTxLink } from "@/lib/explorer";
+import { STACKS_NETWORK } from "@/lib/contracts";
 
 export interface TxLinkProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -17,8 +17,8 @@ function shorten(id: string): string {
 }
 
 const TxLink = React.forwardRef<HTMLAnchorElement, TxLinkProps>(
-  ({ className, txId, chain = "mainnet", label, ...props }, ref) => {
-    const href = `${EXPLORER_BASE}/${txId}?chain=${chain}`;
+  ({ className, txId, chain = STACKS_NETWORK, label, ...props }, ref) => {
+    const href = buildTxLink(txId, chain);
     return (
       <a
         ref={ref}
