@@ -119,3 +119,9 @@ Key reviewer docs:
 - [docs/integrations/zest.md](docs/integrations/zest.md), [docs/integrations/stackingdao.md](docs/integrations/stackingdao.md), and [docs/integrations/bitflow.md](docs/integrations/bitflow.md) for pinned protocol surfaces
 
 See [docs/threat-model.md](docs/threat-model.md) and [SECURITY.md](SECURITY.md) for the full security posture.
+
+## Environment
+
+Configuration is documented in [`docs/env-config.md`](docs/env-config.md). The
+post-condition policy used by every user-facing transaction is described in
+[`docs/post-conditions.md`](docs/post-conditions.md).
