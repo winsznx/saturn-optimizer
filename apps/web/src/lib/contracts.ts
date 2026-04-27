@@ -38,5 +38,12 @@ export const CONTRACTS = {
   },
 } as const;
 
+export const SBTC_TOKEN = {
+  mainnet: "SP3DX3H4FEYZJZ586MFBS25ZW3HZDMEW92260R2PR.sbtc-token",
+  testnet: "ST1F7QA2MDF17S807EPA36TSS8AMEFY4KA9TVGWXT.sbtc-token",
+} as const;
+
+export const SBTC_TOKEN_PRINCIPAL =
+  STACKS_NETWORK === "testnet" ? SBTC_TOKEN.testnet : SBTC_TOKEN.mainnet;
 export const APP_NAME = "Saturn Optimizer";
 export const APP_ICON = "/icon.svg";
