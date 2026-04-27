@@ -89,7 +89,8 @@ export function useToken() {
         return Number((val as { value: bigint | number }).value);
       }
       return decodeClarityUint(data.result);
-    } catch {
+    } catch (error) {
+      console.warn("[useToken] get-total-supply read failed", error);
       return 0;
     }
   }, [contract]);
