@@ -56,6 +56,7 @@ export function useVault() {
       contractName: contract.name,
       functionName: "withdraw-sbtc",
       functionArgs: [uintCV(shares)],
+      postConditions: await withdrawSbtcPostConditions(),
       postConditionMode: PostConditionMode.Deny,
       anchorMode: AnchorMode.Any,
     });
