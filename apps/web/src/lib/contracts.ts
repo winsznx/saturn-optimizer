@@ -26,7 +26,6 @@ export const CONTRACTS = {
   },
 };
 
-export const VAULT_ADDRESS = `${DEPLOYER_ADDRESS}.saturn-vault`;
 
 export const APP_NAME = "Saturn Optimizer";
 export const APP_ICON = "/icon.svg";
