@@ -1,6 +1,6 @@
 export function decodeClarityUint(hex: string): number {
   if (!hex) return 0;
-  const cleaned = hex.replace(/^0x/, "");
+  const cleaned = hex.trim().replace(/^0x/i, "").toLowerCase();
   if (cleaned.startsWith("01")) {
     return parseInt(cleaned.slice(2), 16);
   }
