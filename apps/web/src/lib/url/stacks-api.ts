@@ -1,5 +1,5 @@
 const API_ROOTS = {
-  mainnet: "https://api.mainnet.hiro.so",
+  mainnet: "https://api.hiro.so",
   testnet: "https://api.testnet.hiro.so",
 } as const;
 
