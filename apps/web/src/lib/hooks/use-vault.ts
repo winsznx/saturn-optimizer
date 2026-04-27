@@ -2,11 +2,9 @@
 
 import { useCallback } from "react";
 import { CONTRACTS, STACKS_API_URL, DEPLOYER_ADDRESS } from "@/lib/contracts";
-import { useWallet } from "@/lib/wallet";
 import { encodePrincipalArg } from "./utils";
 
 export function useVault() {
-  const { address } = useWallet();
   const contract = CONTRACTS.VAULT;
 
   const depositSbtc = useCallback(async (amount: number | bigint) => {
@@ -191,8 +189,6 @@ export function useVault() {
       return { sbtc: 0, stx: 0 };
     }
   }, [contract]);
-
-  void address; // Clear lint warning
 
   return {
     depositSbtc,
