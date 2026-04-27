@@ -1,5 +1,7 @@
 "use client";
 
+import { DEPLOYER_ADDRESS } from "@/lib/contracts";
+import { buildAddressLink } from "@/lib/explorer";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -47,7 +49,7 @@ export default function SwapPage() {
         <CardHeader className="flex flex-row items-center justify-between pb-2 relative z-10 border-b border-white/5">
           <CardTitle className="text-lg">Swap</CardTitle>
           <a
-            href="https://explorer.hiro.so/address/SP31DP8F8CF2GXSZBHHHK5J6Y061744E1TNFGYWYV?chain=mainnet"
+            href={buildAddressLink(DEPLOYER_ADDRESS)}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-white transition-colors"
