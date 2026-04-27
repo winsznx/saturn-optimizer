@@ -8,6 +8,9 @@ export function decodeClarityUint(hex: string): number {
 }
 
 export function encodePrincipalArg(address: string): string {
+  if (!address) {
+    throw new Error("encodePrincipalArg: address must be non-empty");
+  }
   const bytes = Buffer.from(address, "ascii");
   const lenByte = bytes.length.toString(16).padStart(2, "0");
   return `0x06${lenByte}${bytes.toString("hex")}`;
