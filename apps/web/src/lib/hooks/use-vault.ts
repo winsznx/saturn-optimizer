@@ -157,7 +157,8 @@ export function useVault() {
         };
       }
       return { idleSbtc: 0, idleStx: 0, managedSbtc: 0, managedStx: 0, managedStstx: 0 };
-    } catch {
+    } catch (error) {
+      console.warn("[useVault] get-vault-balances read failed", error);
       return { idleSbtc: 0, idleStx: 0, managedSbtc: 0, managedStx: 0, managedStstx: 0 };
     }
   }, [contract]);
