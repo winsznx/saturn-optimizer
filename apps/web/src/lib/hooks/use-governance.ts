@@ -64,7 +64,8 @@ export function useGovernance() {
       );
       const data = await res.json();
       return data.result || "";
-    } catch {
+    } catch (error) {
+      console.warn("[useGovernance] get-admin read failed", error);
       return "";
     }
   }, [contract]);
