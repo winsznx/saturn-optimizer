@@ -101,6 +101,7 @@ export function useVault() {
       contractName: contract.name,
       functionName: "safe-withdraw-stx",
       functionArgs: [uintCV(shares)],
+      postConditions: await withdrawStxPostConditions(),
       postConditionMode: PostConditionMode.Deny,
       anchorMode: AnchorMode.Any,
     });
