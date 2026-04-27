@@ -50,7 +50,8 @@ export function WalletProvider({ children }: { children: ReactNode }) {
       const data = await res.json();
       const bal = (Number(data.balance) / 1_000_000).toFixed(2);
       setStxBalance(bal);
-    } catch {
+    } catch (error) {
+      console.warn("[wallet] failed to fetch STX balance", error);
       setStxBalance("0");
     }
   }, []);
