@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useVault } from "@/lib/hooks";
 import { useWallet } from "@/lib/wallet";
 import { toMicroUnits, fromMicroUnits, isValidAmount } from "@/lib/format";
+import { buildTxLink } from "@/lib/explorer";
 
 import type { Asset, TabMode, TxStatus, UserPosition } from "@/lib/types";
 
@@ -180,7 +181,7 @@ export default function DepositWithdrawPage() {
                         <span>{txStatus.message}</span>
                         {txStatus.txId && (
                           <a
-                            href={`https://explorer.hiro.so/txid/${txStatus.txId}?chain=mainnet`}
+                            href={buildTxLink(txStatus.txId)}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="ml-auto shrink-0"
