@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
-import { CONTRACTS, STACKS_API_URL, DEPLOYER_ADDRESS } from "@/lib/contracts";
+import { CONTRACTS, STACKS_API_URL } from "@/lib/contracts";
 import { useWallet } from "@/lib/wallet";
 import { encodePrincipalArg, decodeClarityUint } from "./utils";
 
@@ -51,7 +51,7 @@ export function useToken() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            sender: DEPLOYER_ADDRESS,
+            sender: contract.address,
             arguments: [encodePrincipalArg(owner)],
           }),
         }
@@ -78,7 +78,7 @@ export function useToken() {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sender: DEPLOYER_ADDRESS, arguments: [] }),
+          body: JSON.stringify({ sender: contract.address, arguments: [] }),
         }
       );
       const data = await res.json();
