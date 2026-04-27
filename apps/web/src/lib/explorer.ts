@@ -20,3 +20,10 @@ export function buildContractLink(
 ): string {
   return `${BASE}/txid/${address}.${name}?chain=${chain}`;
 }
+
+export function buildBlockLink(
+  height: number | string,
+  chain: string = STACKS_NETWORK
+): string {
+  return `${BASE}/block/${height}?chain=${chain}`;
+}
