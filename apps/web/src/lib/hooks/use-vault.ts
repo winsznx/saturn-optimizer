@@ -119,7 +119,8 @@ export function useVault() {
         };
       }
       return { sbtcShares: 0, stxShares: 0 };
-    } catch {
+    } catch (error) {
+      console.warn("[useVault] get-user-position read failed", error);
       return { sbtcShares: 0, stxShares: 0 };
     }
   }, [contract]);
