@@ -39,3 +39,14 @@ Common types:
 - **Verification**: Include the exact commands used for verification (e.g., `npm test`, `clarinet check`).
 - **Description**: Clearly describe the impact of the change on the vault's security posture or user experience.
 
+## Post-condition policy
+
+Any new user-facing contract call must ship in `PostConditionMode.Deny` with an
+explicit post-condition list — see
+[`docs/post-conditions.md`](docs/post-conditions.md). PRs that introduce a write
+call without a post-condition will be blocked.
+
+## Type safety
+
+- `npx tsc --noEmit -p apps/web` must be clean before opening a PR.
+- New utilities should ship with a unit test under `apps/web/tests/`.
