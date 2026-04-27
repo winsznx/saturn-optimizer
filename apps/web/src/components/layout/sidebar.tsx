@@ -2,6 +2,7 @@ import { Copy, LayoutDashboard, Wallet, ShieldAlert, FileText, ArrowLeftRight } 
 import Link from "next/link";
 import { useCallback } from "react";
 import { DEPLOYER_ADDRESS } from "@/lib/contracts";
+import { buildAddressLink } from "@/lib/explorer";
 
 export const NAV_ITEMS = [
   { href: "/dashboard", icon: LayoutDashboard, label: "Overview", exact: true },
@@ -76,7 +77,7 @@ export function SidebarContent({ pathname, onNavigate }: { pathname: string; onN
         </div>
         <div className="mt-4 px-3">
           <a
-            href={`https://explorer.hiro.so/address/${DEPLOYER_ADDRESS}?chain=mainnet`}
+            href={buildAddressLink(DEPLOYER_ADDRESS)}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center text-xs text-muted-foreground hover:text-white transition-colors"
