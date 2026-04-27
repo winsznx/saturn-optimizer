@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
-import { CONTRACTS, STACKS_API_URL, DEPLOYER_ADDRESS } from "@/lib/contracts";
+import { CONTRACTS, STACKS_API_URL } from "@/lib/contracts";
 import { encodePrincipalArg } from "./utils";
 
 export function useVault() {
@@ -100,7 +100,7 @@ export function useVault() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            sender: DEPLOYER_ADDRESS,
+            sender: contract.address,
             arguments: [encodePrincipalArg(owner)],
           }),
         }
@@ -137,7 +137,7 @@ export function useVault() {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sender: DEPLOYER_ADDRESS, arguments: [] }),
+          body: JSON.stringify({ sender: contract.address, arguments: [] }),
         }
       );
       const data = await res.json();
@@ -169,7 +169,7 @@ export function useVault() {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sender: DEPLOYER_ADDRESS, arguments: [] }),
+          body: JSON.stringify({ sender: contract.address, arguments: [] }),
         }
       );
       const data = await res.json();
