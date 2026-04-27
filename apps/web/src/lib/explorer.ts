@@ -27,3 +27,7 @@ export function buildBlockLink(
 ): string {
   return `${BASE}/block/${height}?chain=${chain}`;
 }
+
+export function buildMempoolLink(chain: string = STACKS_NETWORK): string {
+  return `${BASE}/mempool?chain=${chain}`;
+}
