@@ -2,12 +2,21 @@
 
 import { useCallback } from "react";
 import { CONTRACTS, STACKS_API_URL } from "@/lib/contracts";
+import { useWallet } from "@/lib/wallet";
+import {
+  depositSbtcPostConditions,
+  depositStxPostConditions,
+  withdrawSbtcPostConditions,
+  withdrawStxPostConditions,
+} from "@/lib/post-conditions";
 import { encodePrincipalArg } from "./utils";
 
 export function useVault() {
+  const { address } = useWallet();
   const contract = CONTRACTS.VAULT;
 
   const depositSbtc = useCallback(async (amount: number | bigint) => {
+    if (!address) throw new Error("depositSbtc: wallet must be connected");
     const { openContractCall } = await import("@stacks/connect");
     const { uintCV, PostConditionMode, AnchorMode } = await import("@stacks/transactions");
 
@@ -16,10 +25,11 @@ export function useVault() {
       contractName: contract.name,
       functionName: "deposit-sbtc",
       functionArgs: [uintCV(amount)],
+      postConditions: await depositSbtcPostConditions(address, amount),
       postConditionMode: PostConditionMode.Deny,
       anchorMode: AnchorMode.Any,
     });
-  }, [contract]);
+  }, [contract, address]);
 
   const depositStx = useCallback(async (amount: number | bigint) => {
     const { openContractCall } = await import("@stacks/connect");
