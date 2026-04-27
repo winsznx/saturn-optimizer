@@ -64,7 +64,8 @@ export function useToken() {
         return Number((val as { value: bigint | number }).value);
       }
       return 0;
-    } catch {
+    } catch (error) {
+      console.warn("[useToken] get-balance read failed", error);
       return 0;
     }
   }, [contract]);
