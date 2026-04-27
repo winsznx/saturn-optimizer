@@ -186,7 +186,8 @@ export function useVault() {
         };
       }
       return { sbtc: 0, stx: 0 };
-    } catch {
+    } catch (error) {
+      console.warn("[useVault] get-total-shares read failed", error);
       return { sbtc: 0, stx: 0 };
     }
   }, [contract]);
