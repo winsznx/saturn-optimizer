@@ -69,6 +69,7 @@ settings/*-local.toml
 
 # App / keeper local runtime config
 apps/web/.env*
+!apps/web/.env.example
 scripts/keeper/.env*
 chainhooks/*.local.json
 packages/
