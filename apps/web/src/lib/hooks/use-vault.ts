@@ -32,6 +32,7 @@ export function useVault() {
   }, [contract, address]);
 
   const depositStx = useCallback(async (amount: number | bigint) => {
+    if (!address) throw new Error("depositStx: wallet must be connected");
     const { openContractCall } = await import("@stacks/connect");
     const { uintCV, PostConditionMode, AnchorMode } = await import("@stacks/transactions");
 
@@ -40,10 +41,11 @@ export function useVault() {
       contractName: contract.name,
       functionName: "deposit-stx",
       functionArgs: [uintCV(amount)],
+      postConditions: await depositStxPostConditions(address, amount),
       postConditionMode: PostConditionMode.Deny,
       anchorMode: AnchorMode.Any,
     });
-  }, [contract]);
+  }, [contract, address]);
 
   const withdrawSbtc = useCallback(async (shares: number | bigint) => {
     const { openContractCall } = await import("@stacks/connect");
