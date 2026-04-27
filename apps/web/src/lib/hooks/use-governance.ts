@@ -46,7 +46,8 @@ export function useGovernance() {
       );
       const data = await res.json();
       return data.result === "0x03";
-    } catch {
+    } catch (error) {
+      console.warn("[useGovernance] is-paused read failed", error);
       return false;
     }
   }, [contract]);
