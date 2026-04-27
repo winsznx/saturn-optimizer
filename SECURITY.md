@@ -24,4 +24,8 @@ Please report vulnerabilities privately to the project maintainer before opening
 - strategy and adapter contracts are grant-MVP skeletons, not production integrations
 - upstream contract principals in the integration dossiers remain placeholders until pinned against verified protocol deployments
 - the frontend and keeper are currently documented stubs
+## Reporting a vulnerability
 
+Please email the maintainers privately rather than opening a public issue. Include
+a proof-of-concept transaction id or a minimal Clarinet/Vitest test case where
+possible.
