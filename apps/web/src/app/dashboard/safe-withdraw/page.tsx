@@ -10,6 +10,7 @@ import { useWallet } from "@/lib/wallet";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toMicroUnits } from "@/lib/format";
+import { buildTxLink } from "@/lib/explorer";
 
 import type { Asset, TxStatus, UserPosition } from "@/lib/types";
 
@@ -162,7 +163,7 @@ export default function SafeWithdrawPage() {
                   <span>{txStatus.message}</span>
                   {txStatus.txId && (
                     <a
-                      href={`https://explorer.hiro.so/txid/${txStatus.txId}?chain=mainnet`}
+                      href={buildTxLink(txStatus.txId)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="ml-auto shrink-0"
