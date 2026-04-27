@@ -1,5 +1,5 @@
 import type { PostCondition } from "@stacks/transactions";
-import { CONTRACTS, DEPLOYER_ADDRESS, SBTC_TOKEN_PRINCIPAL } from "@/lib/contracts";
+import { CONTRACTS, SBTC_TOKEN_PRINCIPAL } from "@/lib/contracts";
 
 const VAULT_PRINCIPAL = `${CONTRACTS.VAULT.address}.${CONTRACTS.VAULT.name}` as const;
 
@@ -35,5 +35,3 @@ export async function withdrawSbtcPostConditions(): Promise<PostCondition[]> {
   ];
 }
 
-export const __VAULT_PRINCIPAL__ = VAULT_PRINCIPAL;
-void DEPLOYER_ADDRESS;
