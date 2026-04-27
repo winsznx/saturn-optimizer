@@ -22,7 +22,7 @@ export const CONTRACTS = {
   },
   SIP010_TRAIT: {
     address: DEPLOYER_ADDRESS,
-    name: "ip010-ft-trait",
+    name: "sip010-ft-trait",
   },
 };
 
