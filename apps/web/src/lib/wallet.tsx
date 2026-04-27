@@ -44,13 +44,14 @@ export function WalletProvider({ children }: { children: ReactNode }) {
   const [address, setAddress] = useState("");
   const [stxBalance, setStxBalance] = useState("0");
 
-  const fetchBalance = useCallback(async (addr: string) => {
+  const fetchBalance = useCallback(async (addr: string, signal?: AbortSignal) => {
     try {
-      const res = await fetch(`${STACKS_API_URL}/extended/v1/address/${addr}/stx`);
+      const res = await fetch(`${STACKS_API_URL}/extended/v1/address/${addr}/stx`, { signal });
       const data = await res.json();
       const bal = (Number(data.balance) / 1_000_000).toFixed(2);
       setStxBalance(bal);
     } catch (error) {
+      if ((error as { name?: string })?.name === "AbortError") return;
       console.warn("[wallet] failed to fetch STX balance", error);
       setStxBalance("0");
     }
