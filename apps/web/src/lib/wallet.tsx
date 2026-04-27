@@ -8,7 +8,7 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import { APP_NAME, APP_ICON, STACKS_API_URL } from "@/lib/contracts";
+import { APP_NAME, APP_ICON, STACKS_API_URL, STACKS_NETWORK } from "@/lib/contracts";
 
 import type { UserSession } from "@stacks/connect";
 
@@ -60,7 +60,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     initSession().then((session) => {
       if (session && session.isUserSignedIn()) {
         const userData = session.loadUserData();
-        const addr = userData.profile.stxAddress.mainnet;
+        const addr = userData.profile.stxAddress[STACKS_NETWORK] ?? userData.profile.stxAddress.mainnet;
         setAddress(addr);
         setConnected(true);
         fetchBalance(addr);
@@ -76,7 +76,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
       appDetails: { name: APP_NAME, icon: APP_ICON },
       onFinish: () => {
         const userData = session.loadUserData();
-        const addr = userData.profile.stxAddress.mainnet;
+        const addr = userData.profile.stxAddress[STACKS_NETWORK] ?? userData.profile.stxAddress.mainnet;
         setAddress(addr);
         setConnected(true);
         fetchBalance(addr);
