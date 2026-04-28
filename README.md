@@ -140,3 +140,17 @@ post-condition policy used by every user-facing transaction is described in
 | Pre-deploy checklist        | [`docs/security-checklist.md`](docs/security-checklist.md) |
 | Upstream integrations       | [`docs/integrations/`](docs/integrations/)        |
 | Milestones                  | [`docs/milestones.md`](docs/milestones.md)        |
+
+
+## Quick start
+
+```bash
+git clone https://github.com/winsznx/saturn-optimizer
+cd saturn-optimizer
+nvm use && npm install
+npm --prefix apps/web run dev
+```
+
+The web app launches at `http://localhost:3000` and connects to the canonical
+Saturn mainnet deployment by default. See
+[`docs/development.md`](docs/development.md) for the full workflow.
