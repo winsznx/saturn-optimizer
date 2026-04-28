@@ -3,7 +3,7 @@
 import { useCallback } from "react";
 import { CONTRACTS, STACKS_API_URL } from "@/lib/contracts";
 import { useWallet } from "@/lib/wallet";
-import { encodePrincipalArg, decodeClarityUint } from "./utils";
+import { encodePrincipalArg } from "./utils";
 
 export function useToken() {
   const { address } = useWallet();
@@ -88,7 +88,7 @@ export function useToken() {
       if (typeof val === "object" && val !== null && "value" in val) {
         return Number((val as { value: bigint | number }).value);
       }
-      return decodeClarityUint(data.result);
+      return 0;
     } catch (error) {
       console.warn("[useToken] get-total-supply read failed", error);
       return 0;
