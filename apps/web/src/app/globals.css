@@ -98,3 +98,15 @@
   background-size: 200% 100%;
   animation: shimmer 1.6s ease-in-out infinite;
 }
+
+.glass-panel-strong {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background-color: rgba(8, 10, 18, 0.7);
+  backdrop-filter: blur(18px) saturate(140%);
+}
+
+.glass-panel-subtle {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background-color: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+}
