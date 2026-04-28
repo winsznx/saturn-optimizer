@@ -85,6 +85,10 @@ export function useToken() {
           body: JSON.stringify({ sender: contract.address, arguments: [] }),
         }
       );
+      if (!res.ok) {
+        console.warn(`[useToken] get-total-supply returned ${res.status}`);
+        return 0;
+      }
       const data = await res.json();
       if (!data.result) return 0;
       const cv = deserializeCV(data.result);
