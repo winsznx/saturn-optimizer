@@ -191,6 +191,10 @@ export function useVault() {
           body: JSON.stringify({ sender: contract.address, arguments: [] }),
         }
       );
+      if (!res.ok) {
+        console.warn(`[useVault] get-total-shares returned ${res.status}`);
+        return { sbtc: 0, stx: 0 };
+      }
       const data = await res.json();
       if (!data.result) return { sbtc: 0, stx: 0 };
       const cv = deserializeCV(data.result);
