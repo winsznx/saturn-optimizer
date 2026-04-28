@@ -43,20 +43,19 @@ export default function DepositWithdrawPage() {
     setTxStatus(null);
     try {
       const uAmount = toMicroUnits(amount);
-      if (activeTab === "deposit") {
-        if (activeAsset === "sbtc") {
-          await depositSbtc(uAmount);
-        } else {
-          await depositStx(uAmount);
-        }
-      } else {
-        if (activeAsset === "sbtc") {
-          await withdrawSbtc(uAmount);
-        } else {
-          await withdrawStx(uAmount);
-        }
-      }
-      setTxStatus({ type: "success", message: "Transaction broadcast successfully. Confirm in your wallet." });
+      const result =
+        activeTab === "deposit"
+          ? activeAsset === "sbtc"
+            ? await depositSbtc(uAmount)
+            : await depositStx(uAmount)
+          : activeAsset === "sbtc"
+            ? await withdrawSbtc(uAmount)
+            : await withdrawStx(uAmount);
+      setTxStatus({
+        type: "success",
+        message: "Transaction submitted. Track confirmation on the explorer.",
+        txId: result.txId,
+      });
       setAmount("");
       setTimeout(() => loadPosition(), 3000);
     } catch (e) {
