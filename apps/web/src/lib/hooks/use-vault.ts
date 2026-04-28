@@ -75,10 +75,9 @@ export function useVault() {
   }, [contract]);
 
   const safeWithdrawSbtc = useCallback(async (shares: number | bigint) => {
-    const { openContractCall } = await import("@stacks/connect");
     const { uintCV, PostConditionMode, AnchorMode } = await import("@stacks/transactions");
 
-    await openContractCall({
+    return callContract({
       contractAddress: contract.address,
       contractName: contract.name,
       functionName: "safe-withdraw-sbtc",
