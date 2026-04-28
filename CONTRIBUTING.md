@@ -2,6 +2,9 @@
 
 ## Local workflow
 
+See [`docs/development.md`](docs/development.md) for the full local setup.
+Quick start:
+
 1. Install dependencies with `npm install`
 2. Validate contracts with `clarinet check`
 3. Run tests with `npm test`
