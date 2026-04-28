@@ -56,6 +56,10 @@ export function useToken() {
           }),
         }
       );
+      if (!res.ok) {
+        console.warn(`[useToken] get-balance returned ${res.status}`);
+        return 0;
+      }
       const data = await res.json();
       if (!data.result) return 0;
       const cv = deserializeCV(data.result);
