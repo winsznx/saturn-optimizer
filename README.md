@@ -127,3 +127,16 @@ See [docs/threat-model.md](docs/threat-model.md) and [SECURITY.md](SECURITY.md) 
 Configuration is documented in [`docs/env-config.md`](docs/env-config.md). The
 post-condition policy used by every user-facing transaction is described in
 [`docs/post-conditions.md`](docs/post-conditions.md).
+
+## Documentation
+
+| Topic                       | Where                                             |
+| --------------------------- | ------------------------------------------------- |
+| Architecture & components   | [`docs/architecture.md`](docs/architecture.md)    |
+| Product spec & asset model  | [`docs/spec.md`](docs/spec.md)                    |
+| Threat model & post-conditions | [`docs/threat-model.md`](docs/threat-model.md), [`docs/post-conditions.md`](docs/post-conditions.md) |
+| Environment configuration   | [`docs/env-config.md`](docs/env-config.md)        |
+| Local development           | [`docs/development.md`](docs/development.md)      |
+| Pre-deploy checklist        | [`docs/security-checklist.md`](docs/security-checklist.md) |
+| Upstream integrations       | [`docs/integrations/`](docs/integrations/)        |
+| Milestones                  | [`docs/milestones.md`](docs/milestones.md)        |
