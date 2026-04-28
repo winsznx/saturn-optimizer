@@ -21,8 +21,9 @@ describe("clarity hook utils", () => {
     it("encodes a standard principal as a length-prefixed clarity arg", () => {
       const encoded = encodePrincipalArg("SP31DP8F8CF2GXSZBHHHK5J6Y061744E1TNFGYWYV");
       expect(encoded).toMatch(/^0x06[0-9a-f]+$/);
-      // length byte should match address byte length (41 chars = 0x29)
-      expect(encoded.slice(2, 4)).toBe("29");
+      // bytes 0-1 are the principal opcode 0x06; bytes 2-3 are the length
+      // byte (41 ASCII chars = 0x29)
+      expect(encoded.slice(4, 6)).toBe("29");
     });
     it("throws on empty input rather than producing a malformed arg", () => {
       expect(() => encodePrincipalArg("")).toThrow();
