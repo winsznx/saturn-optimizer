@@ -3,11 +3,12 @@ import Link from "next/link";
 import { useCallback } from "react";
 import { DEPLOYER_ADDRESS } from "@/lib/contracts";
 import { buildAddressLink } from "@/lib/explorer";
+import { ROUTES } from "@/lib/constants/routes";
 
 export const NAV_ITEMS = [
-  { href: "/dashboard", icon: LayoutDashboard, label: "Overview", exact: true },
-  { href: "/dashboard/deposit", icon: Wallet, label: "Deposit & Withdraw", exact: false },
-  { href: "/dashboard/swap", icon: ArrowLeftRight, label: "Swap Assets", exact: false },
+  { href: ROUTES.DASHBOARD, icon: LayoutDashboard, label: "Overview", exact: true },
+  { href: ROUTES.DEPOSIT, icon: Wallet, label: "Deposit & Withdraw", exact: false },
+  { href: ROUTES.SWAP, icon: ArrowLeftRight, label: "Swap Assets", exact: false },
 ];
 
 export function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate?: () => void }) {
@@ -52,10 +53,10 @@ export function SidebarContent({ pathname, onNavigate }: { pathname: string; onN
         </h2>
         <nav className="space-y-1">
           <Link
-            href="/dashboard/safe-withdraw"
+            href={ROUTES.SAFE_WITHDRAW}
             onClick={onNavigate}
             className={`flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors ${
-              pathname === "/dashboard/safe-withdraw"
+              pathname === ROUTES.SAFE_WITHDRAW
                 ? "bg-destructive/20 text-destructive"
                 : "text-emerald-400/80 hover:bg-emerald-500/10 hover:text-emerald-400"
             }`}
