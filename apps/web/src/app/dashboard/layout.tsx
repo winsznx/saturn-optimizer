@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useState, useCallback } from "react";
 import * as motion from "framer-motion/client";
 import { SidebarContent } from "@/components/layout/sidebar";
+import { ErrorBoundary } from "@/components/error-boundary";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -32,7 +33,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </button>
           </div>
 
-          {children}
+          <ErrorBoundary>{children}</ErrorBoundary>
         </main>
       </div>
 
