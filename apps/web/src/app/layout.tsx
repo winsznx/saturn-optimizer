@@ -15,6 +15,8 @@ export const metadata: Metadata = {
     siteName: "Saturn Optimizer",
     type: "website",
   },
+  manifest: "/manifest.webmanifest",
+  themeColor: "#0a0a0a",
   twitter: {
     card: "summary_large_image",
     title: "Saturn Optimizer",
