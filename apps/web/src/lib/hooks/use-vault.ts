@@ -3,6 +3,7 @@
 import { useCallback } from "react";
 import { CONTRACTS, STACKS_API_URL } from "@/lib/contracts";
 import { useWallet } from "@/lib/wallet";
+import { callContract } from "@/lib/contract-call";
 import {
   depositSbtcPostConditions,
   depositStxPostConditions,
