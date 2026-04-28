@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { SaturnLogo } from "@/components/ui/saturn-logo";
 import { truncateAddress } from "@/lib/utils";
 import { useWallet } from "@/lib/wallet";
+import { NetworkBadge } from "@/components/network-badge";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
@@ -46,6 +47,7 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           {isDashboard ? (
             <div className="flex items-center gap-3">
+              <NetworkBadge className="hidden sm:inline-flex" />
               {connected ? (
                 <>
                   <div className="hidden sm:flex flex-col items-end">
