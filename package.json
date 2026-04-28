@@ -19,7 +19,7 @@
   "dependencies": {
     "@stacks/clarinet-sdk": "3.16.0",
     "@stacks/transactions": "^7.2.0",
-    "@types/node": "^24.4.0",
+    "@types/node": "^25.6.0",
     "chokidar-cli": "^3.0.0",
     "tsx": "^4.19.2",
     "vitest": "4.1.5",
