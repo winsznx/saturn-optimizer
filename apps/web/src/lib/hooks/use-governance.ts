@@ -66,6 +66,10 @@ export function useGovernance() {
           body: JSON.stringify({ sender: contract.address, arguments: [] }),
         }
       );
+      if (!res.ok) {
+        console.warn(`[useGovernance] get-admin returned ${res.status}`);
+        return "";
+      }
       const data = await res.json();
       return data.result || "";
     } catch (error) {
