@@ -1,4 +1,3 @@
-export * from "./asset-symbols";
 export * from "./error-codes";
 export * from "./http-status";
 export * from "./limits";
