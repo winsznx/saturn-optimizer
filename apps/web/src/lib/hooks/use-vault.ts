@@ -116,6 +116,10 @@ export function useVault() {
           }),
         }
       );
+      if (!res.ok) {
+        console.warn(`[useVault] get-user-position returned ${res.status}`);
+        return { sbtcShares: 0, stxShares: 0 };
+      }
       const data = await res.json();
       if (!data.result) return { sbtcShares: 0, stxShares: 0 };
       const cv = deserializeCV(data.result);
