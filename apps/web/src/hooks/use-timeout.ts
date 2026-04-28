@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-export function useTimeout(callback: (...args: any[]) => void, delayMs: number | null): void {
+export function useTimeout(callback: () => void, delayMs: number | null): void {
   const callbackRef = useRef(callback);
 
   useEffect(() => {
