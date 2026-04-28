@@ -7,7 +7,8 @@ describe("object helpers", () => {
       expect(pick({ a: 1, b: 2, c: 3 }, ["a", "c"])).toEqual({ a: 1, c: 3 });
     });
     it("ignores keys missing from the source object", () => {
-      expect(pick({ a: 1 }, ["a", "b"] as ("a" | "b")[])).toEqual({ a: 1 });
+      const source: { a: number; b?: number } = { a: 1 };
+      expect(pick(source, ["a", "b"])).toEqual({ a: 1 });
     });
   });
 
