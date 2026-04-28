@@ -44,12 +44,15 @@ export default function SafeWithdrawPage() {
     setTxStatus(null);
     try {
       const uAmount = toMicroUnits(amount);
-      if (activeAsset === "sbtc") {
-        await safeWithdrawSbtc(uAmount);
-      } else {
-        await safeWithdrawStx(uAmount);
-      }
-      setTxStatus({ type: "success", message: "Emergency withdrawal broadcast. Confirm in your wallet." });
+      const result =
+        activeAsset === "sbtc"
+          ? await safeWithdrawSbtc(uAmount)
+          : await safeWithdrawStx(uAmount);
+      setTxStatus({
+        type: "success",
+        message: "Emergency withdrawal submitted. Track confirmation on the explorer.",
+        txId: result.txId,
+      });
       setAmount("");
       setTimeout(() => loadData(), 3000);
     } catch (e) {
