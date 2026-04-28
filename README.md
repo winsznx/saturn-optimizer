@@ -1,5 +1,7 @@
 # Saturn Optimizer
 
+![License](https://img.shields.io/badge/license-MIT-blue) ![Network](https://img.shields.io/badge/stacks-mainnet-green) ![Clarity](https://img.shields.io/badge/clarity-4-orange)
+
 Saturn Optimizer is a Clarinet-first Stacks BTCFi vault MVP built for grant review. The repo focuses on a secure vault core, explicit threat modeling, mockable protocol integrations, and a reviewer-friendly local workflow.
 
 ## Why Saturn
