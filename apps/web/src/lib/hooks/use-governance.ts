@@ -44,6 +44,10 @@ export function useGovernance() {
           body: JSON.stringify({ sender: contract.address, arguments: [] }),
         }
       );
+      if (!res.ok) {
+        console.warn(`[useGovernance] is-paused returned ${res.status}`);
+        return false;
+      }
       const data = await res.json();
       return data.result === "0x03";
     } catch (error) {
