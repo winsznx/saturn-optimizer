@@ -6,7 +6,7 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Saturn Optimizer | The Management Layer for Stacks BTCFi",
+  title: { default: "Saturn Optimizer", template: "%s | Saturn Optimizer" },
   description: "One vault entrypoint instead of fragmented protocol UX. Earn on Bitcoin or STX safely and securely.",
   openGraph: {
     title: "Saturn Optimizer",
