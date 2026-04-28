@@ -47,6 +47,11 @@ export function WalletProvider({ children }: { children: ReactNode }) {
   const fetchBalance = useCallback(async (addr: string, signal?: AbortSignal) => {
     try {
       const res = await fetch(`${STACKS_API_URL}/extended/v1/address/${addr}/stx`, { signal });
+      if (!res.ok) {
+        console.warn(`[wallet] STX balance request returned ${res.status}`);
+        setStxBalance("0");
+        return;
+      }
       const data = await res.json();
       const bal = (Number(data.balance) / 1_000_000).toFixed(2);
       setStxBalance(bal);
