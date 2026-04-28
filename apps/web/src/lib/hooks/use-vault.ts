@@ -155,6 +155,10 @@ export function useVault() {
           body: JSON.stringify({ sender: contract.address, arguments: [] }),
         }
       );
+      if (!res.ok) {
+        console.warn(`[useVault] get-vault-balances returned ${res.status}`);
+        return { idleSbtc: 0, idleStx: 0, managedSbtc: 0, managedStx: 0, managedStstx: 0 };
+      }
       const data = await res.json();
       if (!data.result) return { idleSbtc: 0, idleStx: 0, managedSbtc: 0, managedStx: 0, managedStstx: 0 };
       const cv = deserializeCV(data.result);
